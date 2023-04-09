@@ -1,0 +1,14 @@
+.bar-container {
+    width: auto;
+    height: 20px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.bar {
+    height: 100%;
+    border-radius: 10px;
+    width: 0;
+    transition: width 1s ease-in-out;
+}
