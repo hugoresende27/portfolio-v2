@@ -12,3 +12,35 @@
     width: 0;
     transition: width 1s ease-in-out;
 }
+
+
+
+/* Define the animation */
+@keyframes moving-footer {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+/* Set a dark background color for the footer on mobile screens */
+@media (max-width: 767px) {
+    footer {
+        background-color: #333;
+    }
+}
+/* Apply the "moving-footer" class to screens larger than mobile size */
+@media (min-width: 768px) {
+    .moving-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        color: #fff;
+        text-align: center;
+        animation: moving-footer 25s linear infinite;
+    }
+
+}
+
