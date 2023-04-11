@@ -35,10 +35,8 @@
         // Send an AJAX request to reload the component's data
         axios.get('/inspire')
             .then(function(response) {
-                var quoteText = response.data.quote.trim();
                 // Update the component's data by replacing the container's HTML
-                container.innerHTML = quoteText;
-                console.log(quoteText)
+                container.innerHTML = response.data.quote.trim();
             })
             .catch(function(error) {
                 console.log(error);
