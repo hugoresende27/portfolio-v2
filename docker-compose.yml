@@ -1,0 +1,54 @@
+version: "3.7"
+services:
+    app:
+        build:
+            args:
+                user: sammy
+                uid: 1000
+            context: ./
+            dockerfile: Dockerfile
+        image: portfolio
+        container_name: portfolio-app
+        restart: unless-stopped
+        working_dir: /var/www/
+        volumes:
+            - ./:/var/www
+        environment:
+            MYSQL_ROOT_PASSWORD: 12345678
+            MYSQL_DATABASE: portfoliov2
+            MYSQL_USER: sammy
+            MYSQL_PASSWORD: 12345678
+        networks:
+            - portfolio
+
+    db:
+        image: mysql:8.0
+        container_name: portfolio-db
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_USER: ${DB_USERNAME}
+            SERVICE_TAGS: dev
+            SERVICE_NAME: mysql
+        volumes:
+            - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+        networks:
+            - portfolio
+
+    nginx:
+        image: nginx:alpine
+        container_name: portfolio-nginx
+        restart: unless-stopped
+        ports:
+            - 90:80
+        volumes:
+            - ./:/var/www
+            - ./docker-compose/nginx:/etc/nginx/conf.d/
+        networks:
+            - portfolio
+
+networks:
+    portfolio:
+        driver: bridge
