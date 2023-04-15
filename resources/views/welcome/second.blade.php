@@ -7,31 +7,33 @@
 
 
 
-            <div class="flex flex-col bg-white/5 p-8">
-                <a href="">
-                    <dt class="text-4xl font-semibold leading-6 text-gray-300">My Projects</dt>
-                    <dd class="order-first text-3xl font-semibold tracking-tight text-white">
 
-                    </dd>
+            <div class="flex flex-col bg-white/5 p-8 justify-center items-center">
+
+                <a href="https://github.com/hugoresende27/" target="_blank">
+                    <dt class="text-4xl m-5 font-semibold leading-6 text-gray-300">My Projects</dt>
                 </a>
+                <a href="https://github.com/hugoresende27/" target="_blank">
+                    <dt class="text-4xl m-5 font-semibold leading-6 text-gray-300">Github</dt>
+                </a>
+                <a href="https://www.linkedin.com/in/hugo-resende-781ab1111/" target="_blank">
+                    <dt class="text-4xl m-5 font-semibold leading-6 text-gray-300">Linkedin</dt>
+                </a>
+
             </div>
 
 
             <div class="flex flex-col bg-white/5 p-8">
                 <a href="">
                     <dt class="text-4xl font-semibold leading-6 text-gray-300">CV</dt>
-                    <dd class="order-first text-3xl font-semibold tracking-tight text-white">
-
-                    </dd>
+                    <img src="{{asset('/my_images/ctt.png')}}" alt="cv">
                 </a>
             </div>
 
             <div class="flex flex-col bg-white/5 p-8">
                 <a href="">
                     <dt class="text-4xl font-semibold leading-6 text-gray-300">Contacts</dt>
-                    <dd class="order-first text-3xl font-semibold tracking-tight text-white">
-
-                    </dd>
+                    <img src="{{asset('/my_images/contact.png')}}" alt="contact" class="mt-10">
                 </a>
             </div>
         </dl>
