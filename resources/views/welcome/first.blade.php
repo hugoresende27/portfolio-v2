@@ -3,6 +3,7 @@
         <dl class="">
             <div class="flex flex-col p-8">
                 <dt class="sm:text-2xl text-lg font-semibold leading-6 text-gray-300 mb-2">
+
                     <div id="quote">
                         {{$quote}}
                     </div>
@@ -11,9 +12,10 @@
 
                 </dt>
 
-                <dt class="text-sm font-semibold leading-6 text-gray-300">
-                    Weather Comming Soon
-                </dt>
+
+
+
+
 
             </div>
 
