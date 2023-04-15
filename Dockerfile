@@ -4,6 +4,7 @@ FROM php:8.1-fpm
 ARG user
 ARG uid
 
+
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
@@ -12,7 +13,16 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev \
     zip \
-    unzip
+    unzip \
+    sudo
+
+# Install Node.js and npm
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt-get install -y nodejs
+# Install Vite
+RUN npm install
+RUN npm install -g vite
+
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
