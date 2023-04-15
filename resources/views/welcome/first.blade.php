@@ -17,7 +17,7 @@
                 </dt>
 
                 <dt class="text-sm font-semibold leading-6 text-gray-300">
-                    API weather here
+                    Weather Comming Soon
                 </dt>
 
             </div>
