@@ -3,7 +3,7 @@
     <div class="flex">
         <div class="mr-4 flex-shrink-0 self-center">
 
-            <img class="inline-block w-40 rounded-full border border-gray-900 border-8" src="{{asset('my_images/me.jpg')}}" alt="me">
+            <img class="inline-block w-20 rounded-full border border-gray-900 border-8" src="{{asset('my_images/me.jpg')}}" alt="me">
 
         </div>
         <div class="mt-8">
