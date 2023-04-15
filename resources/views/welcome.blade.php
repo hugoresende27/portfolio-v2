@@ -3,7 +3,7 @@
 
 
 {{--    <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white px-4 sm:px-20" >--}}
-    <div class="relative sm:flex sm:justify-center  min-h-screen bg-center dark:bg-dots-lighter dark:bg-gray-900  selection:text-white px-4 sm:px-20" >
+    <div class="relative sm:flex sm:justify-center  bg-center dark:bg-dots-lighter dark:bg-gray-900  selection:text-white px-4 sm:px-20" >
         @if (Route::has('login'))
             <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right">
                 @auth
@@ -38,9 +38,9 @@
 
 {{--                    SECOND BOX--}}
 
-           <x-welcome-second>
+                   <x-welcome-second>
 
-           </x-welcome-second>
+                   </x-welcome-second>
 
 
 

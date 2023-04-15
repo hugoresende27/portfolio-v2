@@ -16,13 +16,16 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-{{--    <body class="flex flex-col h-screen">--}}
-    <body class="dark:bg-gray-900">
-        <div class=" font-sans text-gray-900 dark:text-gray-100 antialiased">
+
+    <body class="dark:bg-gray-900 flex flex-col">
+        <div class="flex-grow font-sans text-gray-900 dark:text-gray-100 antialiased">
             {{ $slot }}
         </div>
-        <x-footer class="mt-auto "></x-footer>
+        @if(Route::currentRouteName() !== 'welcome')
+            <x-footer class="mt-auto"></x-footer>
+        @endif
     </body>
+
 
 
 </html>
