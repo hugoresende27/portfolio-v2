@@ -32,4 +32,11 @@ class ContactController extends Controller
         ]);
     }
 
+    public function show(): JsonResponse
+    {
+        return response()->json([
+            'contacts' => Contact::all()
+        ]);
+    }
+
 }
