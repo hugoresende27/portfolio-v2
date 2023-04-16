@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers;
 use App\Models\portfolio\Contact;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
 
 
-    public function store(Request $request)
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function store(Request $request): JsonResponse
     {
-        dd($request);
+
         $validatedData = $request->validate([
             'first_name' => 'required|max:10',
             'last_name' => 'required|max:10',
@@ -21,8 +26,10 @@ class ContactController extends Controller
         ]);
 
         $contact = Contact::create($validatedData);
-
-        return $contact;
+        return response()->json([
+            'success' => true,
+            'contact' => $contact
+        ]);
     }
 
 }
