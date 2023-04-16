@@ -49,7 +49,7 @@
                 </div>
 
 
-                <div class=" px-4 py-5 sm:p-6 rounded-lg bg-gray-700 shadow mt-0">
+                <div class=" px-4 py-5 sm:p-6 rounded-lg bg-gray-700 shadow mt-0 mb-10">
 
 {{--                     THIRD BOX--}}
 
