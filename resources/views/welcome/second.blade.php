@@ -24,14 +24,14 @@
 
 
             <div class="flex flex-col bg-white/5 p-8">
-                <a href="">
+                <a href="{{asset('cv/cv.pdf')}}" target="_blank">
                     <dt class="text-4xl font-semibold leading-6 text-gray-300">CV</dt>
                     <img src="{{asset('/my_images/ctt.png')}}" alt="cv">
                 </a>
             </div>
 
             <div class="flex flex-col bg-white/5 p-8">
-                <a href="">
+                <a href="{{route('contact-me')}}">
                     <dt class="text-4xl font-semibold leading-6 text-gray-300">Contacts</dt>
                     <img src="{{asset('/my_images/contact.png')}}" alt="contact" class="mt-10">
                 </a>

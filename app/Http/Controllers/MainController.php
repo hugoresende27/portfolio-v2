@@ -18,6 +18,11 @@ class MainController extends Controller
         return view('welcome', compact('quote'));
     }
 
+    public function contactMe(): View
+    {
+        return view ('contact');
+    }
+
 
     /**
      * @return string
