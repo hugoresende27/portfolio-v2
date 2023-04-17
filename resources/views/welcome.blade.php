@@ -26,7 +26,7 @@
 
 
 
-                <div class="py-16 sm:py-4">
+                <div class=" text-center py-16 sm:py-4">
 
 {{--                    FIRST BOX--}}
 
@@ -34,7 +34,18 @@
 
                     </x-welcome-first>
 
-{{--                    WEATHER BOX--}}
+                    <div class="">
+
+                        {{--                     THIRD BOX--}}
+
+                        <x-welcome-third>
+
+                        </x-welcome-third>
+
+                    </div>
+
+
+                    {{--                    WEATHER BOX--}}
                     <x-api_components.weather />
 
 {{--                    SECOND BOX--}}
@@ -49,15 +60,6 @@
                 </div>
 
 
-                <div class=" px-4 py-5 sm:p-6 rounded-lg bg-gray-700 shadow mt-0 mb-10">
-
-{{--                     THIRD BOX--}}
-
-                    <x-welcome-third>
-
-                    </x-welcome-third>
-
-                </div>
 
 
 
