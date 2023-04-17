@@ -89,8 +89,8 @@
                 await Swal.fire({
                     title: 'Message send successfully',
                     color: 'white',
-                    background: '#000000',
-                    confirmButtonColor: '#0047cc',
+                    background: '#374151',
+                    confirmButtonColor: '#111827',
                     confirmButtonText: 'OK',
                 });
 
