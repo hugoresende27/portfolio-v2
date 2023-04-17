@@ -23,6 +23,8 @@ services:
 
     db:
         image: mysql:8.0
+#        ports:
+#            - "3306:3306"
         container_name: portfolio-db
         restart: unless-stopped
         environment:
@@ -52,3 +54,4 @@ services:
 networks:
     portfolio:
         driver: bridge
+
