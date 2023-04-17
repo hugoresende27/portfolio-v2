@@ -1,4 +1,4 @@
-<div class="w-3/4">
+
     <div class="">
         <dl class="">
             <div class="flex flex-col p-8">
@@ -21,7 +21,7 @@
 
         </dl>
     </div>
-</div>
+
 
 
 <script>
