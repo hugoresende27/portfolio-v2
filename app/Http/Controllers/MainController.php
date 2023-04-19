@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 
@@ -33,13 +34,27 @@ class MainController extends Controller
         return (Artisan::output());
     }
 
-    public function reloadInspire(Request $request)
+    /**
+     * @return JsonResponse
+     */
+    public function reloadInspire() : JsonResponse
     {
-        // Reload the component's data
+        // Reload the component's inspire quote
         $quote = $this->inspire();
 
         // Return the updated HTML in a JSON response
         return response()->json(['quote' => $quote]);
+    }
+
+
+    /**
+     * @return View
+     */
+    public function projects(): View
+    {
+        $quote = $this->inspire();
+
+        return view ('projects.index', compact('quote'));
     }
 
 

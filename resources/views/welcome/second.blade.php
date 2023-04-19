@@ -9,7 +9,7 @@
 
             <div class="flex flex-col bg-white/5 p-8 justify-center items-center ">
 
-                <a href="https://github.com/hugoresende27/" target="_blank" class="hero-btn" style="font-family: 'Caveat', cursive;">
+                <a href="{{route('projects')}}" class="hero-btn" style="font-family: 'Caveat', cursive;">
                     <dt class="text-5xl m-5 font-semibold leading-6 text-gray-300 my-font">Projects</dt>
                 </a>
                 <a href="https://github.com/hugoresende27/" target="_blank" class="hero-btn" style="font-family: 'Caveat', cursive;">

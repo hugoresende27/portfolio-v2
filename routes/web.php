@@ -30,6 +30,7 @@ Route::get('/clear-cache', function() {
 Route::get('/', [MainController::class, 'welcome'])->name('welcome');
 Route::get('/contact-me', [MainController::class, 'contactMe'])->name('contact-me');
 Route::get('/inspire', [MainController::class, 'reloadInspire'])->name('inspire');
+Route::get('/projects', [MainController::class, 'projects'])->name('projects');
 
 
 Route::middleware([
