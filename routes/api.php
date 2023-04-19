@@ -21,6 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/get-weather', [WeatherAPI::class, 'getWeather'])->name('get-weather');
+Route::post('/get-weather-future', [WeatherAPI::class, 'getWeatherFuture'])->name('get-weather-future');
 Route::post('/get-weather-location', [WeatherAPI::class, 'getWeatherLocations'])->name('get-weather-location');
+Route::post('/get-weather-location-future', [WeatherAPI::class, 'getWeatherFuture'])->name('get-weather-location-future');
 Route::post('/contact', [ContactController::class, 'store'])->name('store-contact');
 Route::get('/contacts', [ContactController::class, 'show'])->name('store-show');
