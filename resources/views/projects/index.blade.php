@@ -23,33 +23,36 @@
 
 
         <div class="overflow-hidden ">
-            <div class=" text-center py-16 sm:py-4">
+            <x-welcome-first :quote="$quote">
 
-                <x-welcome-first :quote="$quote">
+            </x-welcome-first>
+            <div class="h-500 text-center py-16 sm:py-4 ">
+                <div class=" text-center py-16 sm:py-4">
 
-                </x-welcome-first>
 
-                <div class="">
 
-                    {{--                     THIRD BOX--}}
+                    <div>
 
-                    <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                        <a href="#">
-                            <li class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow">
-                                <div class="flex flex-1 flex-col p-8">
-                                    <img class="mx-auto h-32 w-32 flex-shrink-0"
-                                         src="{{asset('my_images/projects/es.jpg')}}" alt="elasticsearch">
-                                </div>
 
-                            </li>
-                        </a>
+                        <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                            <a href="#">
+                                <li class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow">
+                                    <div class="flex flex-1 flex-col p-8">
+                                        <img class="mx-auto h-32 w-32 flex-shrink-0"
+                                             src="{{asset('my_images/projects/es.jpg')}}" alt="elasticsearch">
+                                    </div>
 
-                        <!-- More people... -->
-                    </ul>
+                                </li>
+                            </a>
+
+                            <!-- More people... -->
+                        </ul>
+
+                    </div>
 
                 </div>
-
             </div>
+
 
         </div>
 
