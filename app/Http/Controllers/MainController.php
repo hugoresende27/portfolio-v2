@@ -16,7 +16,7 @@ class MainController extends Controller
     public function welcome(): View
     {
         $quote = $this->inspire();
-        return view('welcome', compact('quote'));
+        return view('welcome', compact('quote' ));
     }
 
     public function contactMe(): View
@@ -56,6 +56,8 @@ class MainController extends Controller
 
         return view ('projects.index', compact('quote'));
     }
+
+
 
 
 
