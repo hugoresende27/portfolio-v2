@@ -129,7 +129,7 @@ function updateWeatherFuture(response) {
     weatherCurrentFuture.innerHTML = response.data.forecast.forecastday[0].day.maxtemp_c;
     weatherWindFuture.innerHTML = response.data.forecast.forecastday[0].day.maxwind_kph;
     weatherSunsetFuture.innerHTML = response.data.forecast.forecastday[0].astro.sunset;
-    weatherSunriseFuture.innerHTML = response.data.forecast.forecastday[0].day.maxwind_kph;
+    weatherSunriseFuture.innerHTML = response.data.forecast.forecastday[0].astro.sunrise;
 
     weatherImageFuture.setAttribute('src', response.data.forecast.forecastday[0].day.condition.icon);
 }
