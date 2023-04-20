@@ -5,7 +5,7 @@
                 <dt class="sm:text-2xl text-lg font-semibold leading-6 text-gray-300 mb-2">
 
                     <div id="quote">
-                        {{$quote}}
+                        {{$quote ?? ""}}
                     </div>
 
 
@@ -27,7 +27,7 @@
 <script>
 
 
-    var container = document.getElementById('quote');
+    const container = document.getElementById('quote');
 
     function reloadQuote() {
         // Send an AJAX request to reload the component's data
@@ -40,7 +40,12 @@
                 console.log(error);
             });
     }
-    // Reload the component's data every 5 seconds
-    setInterval(reloadQuote, 5000);
+    // // Reload the component's data every 5 seconds
+    // setInterval(reloadQuote, 5000);
+
+    if (window.location.pathname === '/') {
+        // Reload the component's data every 5 seconds
+        setInterval(reloadQuote, 5000);
+    }
 </script>
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ElasticdemoController;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -15,9 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+Route::get('/dev', function () {
+
+
+
+
+
+
+});
 
 // Clear application cache:
 Route::get('/clear-cache', function() {
@@ -31,7 +37,7 @@ Route::get('/', [MainController::class, 'welcome'])->name('welcome');
 Route::get('/contact-me', [MainController::class, 'contactMe'])->name('contact-me');
 Route::get('/inspire', [MainController::class, 'reloadInspire'])->name('inspire');
 Route::get('/projects', [MainController::class, 'projects'])->name('projects');
-
+Route::get('/projects/elastic' ,[ElasticdemoController::class, 'index'])->name('projects.elastic');
 
 Route::middleware([
     'auth:sanctum',

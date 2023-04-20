@@ -25,6 +25,13 @@
         </div>
         @if(Route::currentRouteName() !== 'welcome')
             <x-footer class="mt-auto"></x-footer>
+        @else
+            <div class="flex flex-col items-center justify-center">
+                <div class="text-center">
+                    <p class="text-white p-3">{{$lastUpdate}}</p>
+                </div>
+            </div>
+
         @endif
     </body>
 
@@ -32,4 +39,10 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </html>
 
+
+<script>
+    console.info('Last updated by Hugo Resende' );
+
+
+</script>
 
