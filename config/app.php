@@ -196,6 +196,13 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
+//        Elastic\Scout\ScoutServiceProvider::class,
+
+        \Laravel\Scout\ScoutServiceProvider::class
+
+
+//        Elastic\Elasticsearch\Client::class
+
 
     ],
 
@@ -212,6 +219,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+//        'Elasticsearch' => Elastic\Elasticsearch\Client::class,
     ])->toArray(),
 
 ];
