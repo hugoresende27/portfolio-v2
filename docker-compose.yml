@@ -5,6 +5,7 @@ services:
             args:
                 user: sammy
                 uid: 1000
+                password: 1234
             context: ./
             dockerfile: Dockerfile
         image: portfolio
@@ -44,13 +45,28 @@ services:
         container_name: portfolio-nginx
         restart: unless-stopped
         ports:
-            - 90:80
+            - "90:80"
         volumes:
             - ./:/var/www
             - ./docker-compose/nginx:/etc/nginx/conf.d/
         networks:
             - portfolio
 
+    supervisor:
+        image: app
+        networks:
+            - portfolio
+        depends_on:
+            - app
+            - nginx
+        command: supervisord
+
+    redis:
+        image: redis
+        ports:
+            - "6379:6379"
+        networks:
+            - portfolio
 networks:
     portfolio:
         driver: bridge
