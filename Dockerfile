@@ -24,6 +24,8 @@ RUN npm install
 RUN npm install -g vite
 
 
+
+
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -39,6 +41,10 @@ RUN mkdir -p /home/$user/.composer && \
     chown -R $user:$user /home/$user
 
 # Set working directory
-WORKDIR /var/www
+WORKDIR /var/www/html
+
 
 USER $user
+ADD docker-compose/app/supervisor.conf /etc/supervisor/conf.d/worker.conf
+
+

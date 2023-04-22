@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ElasticdemoController;
+use App\Http\Controllers\HorizonController;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,8 @@ Route::get('/contact-me', [MainController::class, 'contactMe'])->name('contact-m
 Route::get('/inspire', [MainController::class, 'reloadInspire'])->name('inspire');
 Route::get('/projects', [MainController::class, 'projects'])->name('projects');
 Route::get('/projects/elastic' ,[ElasticdemoController::class, 'index'])->name('projects.elastic');
+Route::get('/projects/my-horizon' ,[HorizonController::class, 'index'])->name('projects.horizon');
+Route::get('/projects/my-horizon-start' ,[HorizonController::class, 'startHorizon'])->name('projects.horizon.start');
 
 Route::middleware([
     'auth:sanctum',
