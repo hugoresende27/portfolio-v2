@@ -46,3 +46,5 @@
 
 </script>
 
+
+<script src="{{asset('js/project.js')}}"></script>
