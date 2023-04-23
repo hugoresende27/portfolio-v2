@@ -31,6 +31,8 @@ Route::get('/contacts', [ContactController::class, 'show'])->name('store-show');
 
 //records////////////
 Route::post('/add-record', [HorizonController::class, 'store']);
+Route::get('/get-record/{id}', [HorizonController::class, 'getRecord']);
+Route::put('/edit-record/{id}', [HorizonController::class, 'edit']);
 Route::get('/get-records', [HorizonController::class, 'getRecords']);
 Route::get('/seed-records', [HorizonController::class, 'runSeeder']);
 Route::delete('/delete-record/{id}', [HorizonController::class, 'delete']);

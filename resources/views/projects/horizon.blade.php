@@ -73,34 +73,37 @@
                                             <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900">Street</th>
                                             <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900">Number</th>
                                             <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900">Code</th>
-                                            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                                                <span class="sr-only">Edit</span>
-                                            </th>
+                                            <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900">Edit</th>
+                                            <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900">Delete</th>
+
                                         </tr>
                                         </thead>
                                         <tbody class="divide-y divide-gray-200 bg-white">
                                         @foreach($data as $d)
                                             <tr>
                                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                                                    {{$d->name}}
+                                                    {{$d->id}} :: {{$d->name}}
                                                 </td>
                                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">      {{$d->street}}</td>
                                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">      {{$d->number}}</td>
                                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">      {{$d->code}}</td>
-                                                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                    <button type="button" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                                                        Delete</button>
-{{--                                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Delete</a>--}}
-{{--                                                    <a href="#" class="ml-16 text-indigo-600 hover:text-indigo-900">Edit</a>--}}
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                    <button data-record-id="{{ $d->id }}"  id="editRecord" type="button" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                                        Edit</button>
                                                 </td>
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                    <button data-record-id="{{ $d->id }}" id="deleteRecord" type="button" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                                        Delete</button>
+                                                </td>
+
                                             </tr>
                                         @endforeach
 
                                         <!-- More people... -->
                                         </tbody>
                                     </table>
-                                    <div class="my-6">
-                                        {{ $data->links() }}
+                                    <div class="my-6" >
+                                       <span id="paginateLinks"> {{ $data->links() }}</span>
                                     </div>
 
                                 </div>
