@@ -2,6 +2,7 @@
 
 use App\Http\ApiClasses\WeatherAPI;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ScrapController;
 use App\Http\Controllers\HorizonController;
 use App\Http\Controllers\SwaggerController;
 use Illuminate\Http\Request;
@@ -41,3 +42,6 @@ Route::delete('/delete-all-records/', [HorizonController::class, 'deleteAll']);
 
 //swagger ////////////
 Route::get('gen-docs', [SwaggerController::class, 'generateDocs']);
+
+/// crawler
+Route::post('crawler', [ScrapController::class, 'scraper']);
