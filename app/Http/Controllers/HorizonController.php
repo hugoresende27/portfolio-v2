@@ -17,7 +17,7 @@ class HorizonController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/elasticdemo",
+     *     path="projects/my-horizon",
      *     summary="Get all Elasticdemo records",
      *     tags={"Record"},
      *     @OA\Response(
@@ -133,7 +133,7 @@ class HorizonController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/store",
+     *     path="/add-record",
      *     summary="Store a new record",
      *     tags={"Record"},
      *     @OA\RequestBody(
@@ -176,7 +176,6 @@ class HorizonController extends Controller
      *     )
      * )
      */
-
     public function store(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
@@ -215,7 +214,7 @@ class HorizonController extends Controller
      * Update a record.
      *
      * @OA\Patch(
-     *     path="/api/elasticdemo/{id}",
+     *     path="/api/edit-record/{id}",
      *     summary="Update a record",
      *     description="Update a record in the elasticdemo table.",
      *     tags={"Record"},
@@ -341,7 +340,7 @@ class HorizonController extends Controller
      * Get a random inspirational quote.
      *
      * @OA\Get(
-     *     path="/api/inspire",
+     *     path="/inspire",
      *     summary="Get an inspirational quote",
      *     description="Returns a random quote from the Artisan command inspire",
      *     tags={"General"},
@@ -368,7 +367,7 @@ class HorizonController extends Controller
      * Delete a record from Elasticdemo table.
      *
      * @OA\Delete(
-     *     path="/api/elasticdemo/{id}",
+     *     path="/api/delete-record/{id}",
      *     tags={"Record"},
      *     description="Delete a record from Elasticdemo table",
      *     @OA\Parameter(
@@ -405,7 +404,7 @@ class HorizonController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/api/elasticdemo/delete-all",
+     *     path="/api/delete-all-records",
      *     tags={"Record"},
      *     summary="Delete all records from the Elasticdemo table",
      *     @OA\Response(
@@ -425,8 +424,8 @@ class HorizonController extends Controller
      *
      * @return void
      *
-     * @OA\Post(
-     *     path="/api/run-seeder",
+     * @OA\Get(
+     *     path="/api/seed-records",
      *     summary="Insert fake data into elasticdemos table",
      *     tags={"Record"},
      *     @OA\Response(

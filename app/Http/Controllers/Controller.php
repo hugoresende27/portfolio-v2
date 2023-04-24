@@ -9,8 +9,8 @@ use Illuminate\Routing\Controller as BaseController;
 
 /**
  * @OA\Info(
- *    title="Your super  ApplicationAPI",
- *    version="1.0.0",
+ *    title="Portfolio API",
+ *    version="2.0",
  * )
  */
 

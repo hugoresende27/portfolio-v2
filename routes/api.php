@@ -3,6 +3,7 @@
 use App\Http\ApiClasses\WeatherAPI;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HorizonController;
+use App\Http\Controllers\SwaggerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,3 +38,6 @@ Route::get('/get-records', [HorizonController::class, 'getRecords']);
 Route::get('/seed-records', [HorizonController::class, 'runSeeder']);
 Route::delete('/delete-record/{id}', [HorizonController::class, 'delete']);
 Route::delete('/delete-all-records/', [HorizonController::class, 'deleteAll']);
+
+//swagger ////////////
+Route::get('gen-docs', [SwaggerController::class, 'generateDocs']);
