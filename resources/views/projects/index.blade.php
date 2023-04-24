@@ -60,7 +60,7 @@
                                 </li>
                             </a>
 
-                            <a href="#">
+                            <a href="{{url('/api/documentation')}}" target="_blank">
                                 <li class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow">
                                     <div class="flex flex-1 flex-col p-8">
                                         <img class="mx-auto h-32 w-32 flex-shrink-0"
