@@ -1,17 +1,132 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Your super  ApplicationAPI",
-        "version": "1.0.0"
+        "title": "Portfolio API",
+        "version": "2.0"
     },
     "paths": {
-        "/api/elasticdemo": {
+        "/api/get-weather": {
+            "get": {
+                "tags": [
+                    "Weather"
+                ],
+                "summary": "Get the current weather for a given city",
+                "operationId": "c05cf2e780fae51089260a0a0272d523",
+                "parameters": [
+                    {
+                        "name": "city",
+                        "in": "query",
+                        "description": "The name of the city for which to retrieve the weather",
+                        "required": false,
+                        "example": "Aveiro"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "description": "Weather information",
+                                        "properties": {
+                                            "location": {
+                                                "properties": {
+                                                    "name": {
+                                                        "description": "The name of the location",
+                                                        "type": "string"
+                                                    },
+                                                    "region": {
+                                                        "description": "The region of the location",
+                                                        "type": "string"
+                                                    },
+                                                    "country": {
+                                                        "description": "The country of the location",
+                                                        "type": "string"
+                                                    },
+                                                    "lat": {
+                                                        "description": "The latitude of the location",
+                                                        "type": "number"
+                                                    },
+                                                    "lon": {
+                                                        "description": "The longitude of the location",
+                                                        "type": "number"
+                                                    },
+                                                    "tz_id": {
+                                                        "description": "The timezone ID of the location",
+                                                        "type": "string"
+                                                    },
+                                                    "localtime": {
+                                                        "description": "The local time of the location in the format 'YYYY-MM-DD HH:mm'",
+                                                        "type": "string"
+                                                    },
+                                                    "utc_offset": {
+                                                        "description": "The UTC offset of the location in the format '+HH:mm'",
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "current": {
+                                                "properties": {
+                                                    "temp_c": {
+                                                        "description": "The temperature in Celsius",
+                                                        "type": "number"
+                                                    },
+                                                    "temp_f": {
+                                                        "description": "The temperature in Fahrenheit",
+                                                        "type": "number"
+                                                    },
+                                                    "condition": {
+                                                        "properties": {
+                                                            "text": {
+                                                                "description": "The weather condition",
+                                                                "type": "string"
+                                                            },
+                                                            "icon": {
+                                                                "description": "The URL of the weather icon",
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid city parameter",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Error message",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "projects/my-horizon": {
             "get": {
                 "tags": [
                     "Record"
                 ],
                 "summary": "Get all Elasticdemo records",
-                "operationId": "90af960ba42550854cad1b5a44678b4b",
+                "operationId": "ee43c047d2ab554b80fb5d91717af661",
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -198,13 +313,13 @@
                 }
             }
         },
-        "/store": {
+        "/add-record": {
             "post": {
                 "tags": [
                     "Record"
                 ],
                 "summary": "Store a new record",
-                "operationId": "6a94ef69ac88f445005c5883deb7d78e",
+                "operationId": "011d4130929634bb0d6373fd36e5c8f5",
                 "requestBody": {
                     "description": "Provide record data",
                     "required": true,
@@ -290,45 +405,14 @@
                 }
             }
         },
-        "/api/elasticdemo/{id}": {
-            "delete": {
-                "tags": [
-                    "Record"
-                ],
-                "summary": "Delete a record from Elasticdemo table.",
-                "description": "Delete a record from Elasticdemo table",
-                "operationId": "e39f0b382d4d2c38c82fbe5aea366f3d",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "ID of the record to delete",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Record deleted successfully"
-                    },
-                    "404": {
-                        "description": "Record not found"
-                    },
-                    "500": {
-                        "description": "Server error"
-                    }
-                }
-            },
+        "/api/edit-record/{id}": {
             "patch": {
                 "tags": [
                     "Record"
                 ],
                 "summary": "Update a record",
                 "description": "Update a record in the elasticdemo table.",
-                "operationId": "82aeb14e7b18945285db9ab095748d95",
+                "operationId": "e064816cc7ea79beded2236f8761a351",
                 "parameters": [
                     {
                         "name": "id",
@@ -419,14 +503,14 @@
                 }
             }
         },
-        "/api/inspire": {
+        "/inspire": {
             "get": {
                 "tags": [
                     "General"
                 ],
                 "summary": "Get an inspirational quote",
                 "description": "Returns a random quote from the Artisan command inspire",
-                "operationId": "8a64bce17624951da3c9dfa2e5fd74af",
+                "operationId": "726eeba6b87ffbbfc82fbe7eb09dcf95",
                 "responses": {
                     "200": {
                         "description": "Successful operation",
@@ -447,13 +531,46 @@
                 }
             }
         },
-        "/api/elasticdemo/delete-all": {
+        "/api/delete-record/{id}": {
+            "delete": {
+                "tags": [
+                    "Record"
+                ],
+                "summary": "Delete a record from Elasticdemo table.",
+                "description": "Delete a record from Elasticdemo table",
+                "operationId": "c682a66efa404deff7f2dc8bf566d73d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the record to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Record deleted successfully"
+                    },
+                    "404": {
+                        "description": "Record not found"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/api/delete-all-records": {
             "delete": {
                 "tags": [
                     "Record"
                 ],
                 "summary": "Delete all records from the Elasticdemo table",
-                "operationId": "0de12711b8b7a7b539342eb65a22ef19",
+                "operationId": "7ae05aec50222c4633062c876b32bc6f",
                 "responses": {
                     "204": {
                         "description": "All records have been deleted successfully"
@@ -461,14 +578,14 @@
                 }
             }
         },
-        "/api/run-seeder": {
-            "post": {
+        "/api/seed-records": {
+            "get": {
                 "tags": [
                     "Record"
                 ],
                 "summary": "Insert fake data into elasticdemos table",
                 "description": "Populates the elasticdemos table with fake data using Laravel's Model Factories.",
-                "operationId": "bcbe34a9254889691a0909799977e245",
+                "operationId": "4176ae5099fc2f71f3e9cb4711fcafbe",
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -483,6 +600,34 @@
                                         "message": {
                                             "type": "string",
                                             "example": "Seeder executed successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/gen-docs": {
+            "get": {
+                "tags": [
+                    "Swagger"
+                ],
+                "summary": "Generate swagger documentation",
+                "description": "Returns artisan output of l5-swagger:generate",
+                "operationId": "ba81f890ab5135f6efc33164ee73d09d",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "quote": {
+                                            "description": "output artisan",
+                                            "type": "string"
                                         }
                                     },
                                     "type": "object"
@@ -537,6 +682,31 @@
                 "type": "object",
                 "xml": {
                     "name": "Elasticdemo"
+                }
+            }
+        },
+        "responses": {
+            "200": {
+                "description": "Returns the future weather forecast for the specified city.",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {}
+                        }
+                    }
+                }
+            }
+        },
+        "parameters": {
+            "city": {
+                "name": "city",
+                "in": "query",
+                "description": "City name to retrieve the forecast for. Defaults to Aveiro if not specified.",
+                "required": false,
+                "schema": {
+                    "type": "string",
+                    "example": "London"
                 }
             }
         }
