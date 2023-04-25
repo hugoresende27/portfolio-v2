@@ -23,7 +23,13 @@ class ScrapController extends Controller
 
     public function scraperWebForm(Request $request)
     {
-        $this->scraper($request);
+        $res = $this->scraper($request);
+        $results = json_decode($res->getContent());
+
+
+        return view('projects.scraper', [
+            'responseMessage' => $results,
+        ]);
     }
     /**
      * @OA\Post(
