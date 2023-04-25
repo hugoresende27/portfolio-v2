@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-
+use GuzzleHttp\Client;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use PHPUnit\Exception;
 use Symfony\Component\DomCrawler\Crawler;
 
 
@@ -66,28 +67,110 @@ class ScrapController extends Controller
     public function scraper(Request $request): JsonResponse
     {
 
-        try {
-            $url = $this->normalizeUrl($request->url);
-            $html = $this->getContentsHtml($url);
-            $crawler = new Crawler($html);
-            $title = $this->getTitle($crawler);
-            $links = $this->getLinks($crawler);
-            $linksFinal = $this->categorizeLinks($links);
-            $divAttr = $this->getAttributesDiv($crawler);
-        }catch (\Exception){
+        $url = $this->normalizeUrl($request->url);
+
+        if ($url){
+            try {
+
+                $html = $this->getContentsHtml($url);
+                $crawler = new Crawler($html);
+                $title = $this->getTitle($crawler);
+
+                $siteSpecs = $this->getSiteSpecs($url);
+
+                $links = $this->getLinks($crawler);
+
+                $linksFinal = $this->categorizeLinks($links,$url);
+
+                $divAttr = $this->getAttributesDiv($crawler);
+
+                $images = $this->getImages($crawler);
+                $imagesFinal = $this->getImagesLinks($images,$url);
+            } catch (\Exception $e) {
+            }
+
 
         }
 
 
-
         return response()->json([
+            'original_link' => $request->url ?? null,
+            'domain' => $url ?? null,
             'title' => $title ?? null,
+            'specs' => $siteSpecs ?? null,
+            'images' => $imagesFinal ?? null,
             'links' => $linksFinal ?? null,
             'div_attributes' => $divAttr ?? null,
+            'errors' => $e ?? null
         ]);
 
     }
 
+
+    private function getSiteSpecs(string $url): array
+    {
+        $client = new Client(['curl' => [CURLOPT_SSL_CIPHER_LIST => 'DEFAULT@SECLEVEL=1']]);
+        $response = $client->request('HEAD', $url);
+
+        $headers = [
+            'Date',
+            'Content-Type',
+            'Server',
+            'X-Powered-By',
+            'Connection',
+            'Expires',
+            'Content-language',
+            'Last-Modified',
+            'Set-Cookie',
+            'X-Frame-Options',
+        ];
+
+        $specs = [];
+        foreach ($headers as $header) {
+            if ($response->hasHeader($header)) {
+                $specs[$header] = $response->getHeader($header)[0];
+            } else {
+                $specs[$header] = null;
+            }
+        }
+
+        $specs['server_time'] = $specs['Date'];
+        unset($specs['Date']);
+
+        return $specs;
+    }
+
+    /**
+     * @param Crawler $crawler
+     * @return array
+     */
+    private function getImages(Crawler $crawler): array
+    {
+        $images= array();
+        // Get all img elements
+        $imgElements = $crawler->filter('img');
+        // If the class attribute exists and is not empty
+        foreach ($imgElements as $element)
+        {
+            // Get the class attribute value
+            $srcAttr = $element->getAttribute('src');
+            if ($srcAttr) {
+                // Split the class attribute value by whitespace to get the class names
+                $srcNamesArray = explode(' ', $srcAttr);
+
+                // Loop through each class name
+                foreach ($srcNamesArray as $srcName) {
+
+                    // Add the class name to the array if it doesn't already exist
+                    if (!in_array($srcName, $images)) {
+                        $images[] = $srcName;
+                    }
+                }
+            }
+        }
+
+        return $images;
+    }
 
     /**
      * @param string $url
@@ -103,6 +186,7 @@ class ScrapController extends Controller
         ]);
 
         return file_get_contents($url, false, $context);
+
     }
 
     /**
@@ -202,9 +286,9 @@ class ScrapController extends Controller
 
     /**
      * @param $url
-     * @return string
+     * @return string|false
      */
-    private function normalizeUrl($url) :string
+    private function normalizeUrl($url) :string|false
     {
         // Add "https://" if the URL doesn't start with "http://" or "https://"
         if (!preg_match('~^(?:f|ht)tps?://~i', $url)) {
@@ -219,17 +303,26 @@ class ScrapController extends Controller
             $url = substr($url, 0, -1);
         }
 
-        return $url;
+        // Validate the URL using filter_var
+        $normalizedUrl = filter_var($url, FILTER_VALIDATE_URL);
+
+        if ($normalizedUrl === false) {
+            return false;
+        }
+
+        return "https://".parse_url($normalizedUrl, PHP_URL_HOST);
+
     }
 
     /**
      * @param array $links
      * @return array[]
      */
-    private function categorizeLinks(array $links): array
+    private function categorizeLinks(array $links, string $url): array
     {
         $httpLinks = [];
         $nonHttpLinks = [];
+
 
         foreach ($links as $link) {
             // Ignore links that start with #
@@ -239,9 +332,19 @@ class ScrapController extends Controller
 
             // Categorize links based on whether they start with http:// or https://
             if (str_contains($link, 'http://') || str_contains($link, 'https://')) {
-                $httpLinks[] = $link;
+                if (!in_array($link, $httpLinks)) {
+
+                    $httpLinks[] = $link;
+                }
+
             } else {
-                $nonHttpLinks[] = $link;
+                if (!in_array($url.$link, $nonHttpLinks)) {
+                    $checkSlash = substr($link, 0,1);
+                    if ($checkSlash != "/"){
+                        $link = "/".$link;
+                    }
+                    $nonHttpLinks[] = $url.$link;
+                }
             }
         }
 
@@ -249,6 +352,28 @@ class ScrapController extends Controller
             'page_links' => $nonHttpLinks,
             'external_links' => $httpLinks,
         ];
+    }
+
+
+    /**
+     * @param array $links
+     * @param string $url
+     * @return array
+     */
+    private function getImagesLinks(array $links, string $url ): array
+    {
+        $imagesLinks = array();
+        foreach ($links as $link)
+        {
+
+            $checkSlash = substr($link, 0,1);
+            if ($checkSlash != "/"){
+                $link = "/".$link;
+            }
+            $imagesLinks[] = $url.$link;
+
+        }
+        return $imagesLinks;
     }
 
 
