@@ -44,4 +44,4 @@ Route::delete('/delete-all-records/', [HorizonController::class, 'deleteAll']);
 Route::get('gen-docs', [SwaggerController::class, 'generateDocs']);
 
 /// crawler
-Route::post('crawler', [ScrapController::class, 'scraper']);
+Route::post('scraper', [ScrapController::class, 'scraper'])->name('api.scraper');

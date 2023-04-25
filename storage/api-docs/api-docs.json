@@ -610,6 +610,72 @@
                 }
             }
         },
+        "/api/scraper": {
+            "post": {
+                "tags": [
+                    "Scraper"
+                ],
+                "summary": "Scrape HTML content from a URL",
+                "operationId": "fac5d59f0255b3146dc8013cfcf00fd8",
+                "requestBody": {
+                    "description": "URL to scrape",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "url": {
+                                        "type": "string",
+                                        "example": "https://www.hcpro.pt"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Scraped content",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "title": {
+                                            "type": "string",
+                                            "example": "Example Domain"
+                                        },
+                                        "class_names": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "example": "example-class"
+                                            }
+                                        },
+                                        "links": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "example": "https://www.iana.org/domains/example"
+                                            }
+                                        },
+                                        "html": {
+                                            "type": "string",
+                                            "example": "<html>...</html>"
+                                        },
+                                        "all": {
+                                            "type": "object",
+                                            "example": "Crawler object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/gen-docs": {
             "get": {
                 "tags": [

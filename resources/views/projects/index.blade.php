@@ -69,6 +69,16 @@
 
                                 </li>
                             </a>
+
+                            <a href="{{route('projects.scraper')}}">
+                                <li class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow">
+                                    <div class="flex flex-1 flex-col p-8">
+                                        <img class="mx-auto h-32 w-32 flex-shrink-0 rounded-2xl"
+                                             src="{{asset('my_images/projects/scraper.png')}}" alt="scraper">
+                                    </div>
+
+                                </li>
+                            </a>
                         </ul>
 
                     </div>
