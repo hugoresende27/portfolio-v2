@@ -366,11 +366,16 @@ class ScrapController extends Controller
         foreach ($links as $link)
         {
 
-            $checkSlash = substr($link, 0,1);
-            if ($checkSlash != "/"){
-                $link = "/".$link;
+            if (!str_contains($link, $url)){
+                $checkSlash = substr($link, 0,1);
+                if ($checkSlash != "/"){
+                    $link = "/".$link;
+                }
+                $imagesLinks[] = $url.$link;
+            } else {
+                $imagesLinks[] = $link;
             }
-            $imagesLinks[] = $url.$link;
+
 
         }
         return $imagesLinks;
