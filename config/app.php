@@ -69,7 +69,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Europe/Lisbon',
 
     /*
     |--------------------------------------------------------------------------
@@ -201,6 +201,7 @@ return [
 
         \Laravel\Scout\ScoutServiceProvider::class,
         Laravel\Horizon\HorizonServiceProvider::class,
+        Weidner\Goutte\GoutteServiceProvider::class
 
 
 //        Elastic\Elasticsearch\Client::class
@@ -220,8 +221,13 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'ExampleClass' => App\Example\ExampleClass::class,
-//        'Elasticsearch' => Elastic\Elasticsearch\Client::class,
+        'App' => Illuminate\Support\Facades\App::class,
+        'Artisan' => Illuminate\Support\Facades\Artisan::class,
+
+        // ...
+
+        'Goutte' => Weidner\Goutte\GoutteFacade::class, // [2] It will register as an alias for the Goutte facade
+        'Hash' => Illuminate\Support\Facades\Hash::class,
     ])->toArray(),
 
 ];
