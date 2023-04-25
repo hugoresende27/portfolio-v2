@@ -43,7 +43,7 @@ Route::get('/projects/elastic' ,[ElasticdemoController::class, 'index'])->name('
 Route::get('/projects/my-horizon' ,[HorizonController::class, 'index'])->name('projects.horizon');
 Route::get('/projects/my-horizon-start' ,[HorizonController::class, 'startHorizon'])->name('projects.horizon.start');
 Route::get('/projects/scraper' ,[ScrapController::class, 'index'])->name('projects.scraper');
-//Route::post('/projects/scraper-url' ,[ScrapController::class, 'scraperWebForm'])->name('projects.scraper.url');
+Route::post('/projects/scraper-url' ,[ScrapController::class, 'scraperWebForm'])->name('projects.scraper.url');
 
 Route::middleware([
     'auth:sanctum',
