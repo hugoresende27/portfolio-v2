@@ -366,7 +366,7 @@ class ScrapController extends Controller
         foreach ($links as $link)
         {
 
-            if (!str_contains($link, $url)){
+            if (!str_contains($link, "http")){
                 $checkSlash = substr($link, 0,1);
                 if ($checkSlash != "/"){
                     $link = "/".$link;
