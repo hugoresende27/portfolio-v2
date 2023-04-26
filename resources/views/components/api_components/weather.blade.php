@@ -7,7 +7,7 @@
 
         <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
 
-            <div class="relative overflow-hidden rounded-lg bg-white px-2 pb-2 pt-2 shadow sm:px-2 sm:pt-2">
+            <div class="relative overflow-hidden rounded-lg bg-white px-2 pb-2 pt-2 shadow sm:px-2 sm:pt-2  box2">
 
                 <span class="truncate text-sm font-medium text-gray-500">Now</span>
                 <dt>
@@ -26,7 +26,7 @@
                 </dt>
             </div>
 
-            <div class="relative overflow-hidden rounded-lg bg-white px-2 pb-2 pt-2 shadow">
+            <div class="relative overflow-hidden rounded-lg bg-white px-2 pb-2 pt-2 shadow box">
                 <div>
                     <label for="location" class="block text-sm font-medium leading-6 text-gray-900">Location</label>
                     <select id="location" name="location" class="block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-lg sm:leading-6">
@@ -45,7 +45,7 @@
 
             </div>
 
-            <div class="relative overflow-hidden rounded-lg bg-white px-2 pb-2 pt-2 shadow sm:px-6 sm:pt-2">
+            <div class="relative overflow-hidden rounded-lg bg-white px-2 pb-2 pt-2 shadow sm:px-6 sm:pt-2 box3">
 
                 <span class="truncate text-sm font-medium text-gray-500">14 days</span>
                 <dt>
@@ -79,7 +79,23 @@
 </div>
 <script src="{{asset('js/weather.js')}}"></script>
 
-<script>
+<style>
+    /******************************************************************************************/
+    .box2 {
+        --mask:
+            radial-gradient(8px at 0 75%,#0000 98%,#000) 8px 50%/100% 32px repeat-y,
+            radial-gradient(8px at 50% 25%,#000 99%,#0000 101%) left/16px 32px repeat-y;
+        -webkit-mask: var(--mask);
+        mask: var(--mask);
+    }
 
-</script>
+    .box3 {
+        --mask:
+            radial-gradient(8px at 100% 25%,#0000 98%,#000) calc(100% - 8px) 50%/100% 32px repeat-y,
+            radial-gradient(8px at 50% 75%,#000 99%,#0000 101%) right/16px 32px repeat-y;
+        -webkit-mask: var(--mask);
+        mask: var(--mask);
+    }
+
+</style>
 
