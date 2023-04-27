@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\ApiClasses\NewsAPI;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -10,6 +11,7 @@ class NewsController extends Controller
 {
     /**
      * @return View
+     * @throws GuzzleException
      */
     public function index(): View
     {
