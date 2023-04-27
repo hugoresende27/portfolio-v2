@@ -7,10 +7,11 @@
 
         <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
 
-            <div class="relative overflow-hidden rounded-lg bg-white px-2 pb-2 pt-2 shadow sm:px-2 sm:pt-2  box2">
 
+            {{--                NOW         --}}
+            <div class="relative overflow-hidden rounded-lg bg-white px-2 pb-2 pt-2 shadow sm:px-2 sm:pt-2  box2 ">
                 <span class="truncate text-sm font-medium text-gray-500">Now</span>
-                <dt>
+                <dt class="ml-6">
                     <div class="absolute">
                         <img id="weather-icon">
                     </div>
@@ -26,6 +27,8 @@
                 </dt>
             </div>
 
+
+            {{--                LOCATION         --}}
             <div class="relative overflow-hidden rounded-lg bg-white px-2 pb-2 pt-2 shadow box">
                 <div>
                     <label for="location" class="block text-sm font-medium leading-6 text-gray-900">Location</label>
@@ -45,26 +48,34 @@
 
             </div>
 
+
+            {{--                14 DAYS         --}}
             <div class="relative overflow-hidden rounded-lg bg-white px-2 pb-2 pt-2 shadow sm:px-6 sm:pt-2 box3">
 
-                <span class="truncate text-sm font-medium text-gray-500">14 days</span>
-                <dt>
-                    <div class="absolute">
-                        <img id="weather-icon-future">
-                    </div>
-                    <p class="truncate text-2xl font-medium text-gray-500"><span id="weather-city-future"></span></p>
+{{--                <span class="truncate text-sm font-medium text-gray-500">14 days</span>--}}
+{{--                <dt>--}}
+{{--                    <div class="absolute">--}}
+{{--                        <img id="weather-icon-future">--}}
+{{--                    </div>--}}
+{{--                    <p class="truncate text-2xl font-medium text-gray-500"><span id="weather-city-future"></span></p>--}}
 
-                    <p class="ml-20 flex items-baseline text-2xl font-semibold ">
-                        <span id="weather-current-future" class="text-green-600 ml-5"></span><span class="text-green-600">&deg;C.</span>
-                        <span id="weather-wind-future" class="text-black"></span>&nbsp;
-                        <span class="text-black">Km/h</span>&nbsp;
-                    </p>
-                    <p>
-                        <span class="text-black">Sunrise</span>&nbsp;
-                        <span id="weather-sunrise-future" class="text-black"></span>&nbsp;
-                        <span class="text-black">Sunset</span>&nbsp;
-                        <span id="weather-sunset-future" class="text-black"></span>&nbsp;
-                    </p>
+{{--                    <p class="ml-20 flex items-baseline text-2xl font-semibold ">--}}
+{{--                        <span id="weather-current-future" class="text-green-600 ml-5"></span><span class="text-green-600">&deg;C.</span>--}}
+{{--                        <span id="weather-wind-future" class="text-black"></span>&nbsp;--}}
+{{--                        <span class="text-black">Km/h</span>&nbsp;--}}
+{{--                    </p>--}}
+{{--                    <p>--}}
+{{--                        <span class="text-black">Sunrise</span>&nbsp;--}}
+{{--                        <span id="weather-sunrise-future" class="text-black"></span>&nbsp;--}}
+{{--                        <span class="text-black">Sunset</span>&nbsp;--}}
+{{--                        <span id="weather-sunset-future" class="text-black"></span>&nbsp;--}}
+{{--                    </p>--}}
+{{--                </dt>--}}
+
+                {{--                NEWS        --}}
+                <span class="truncate text-sm font-medium text-gray-500">News</span>
+                <dt id="news">
+
                 </dt>
             </div>
 
@@ -78,6 +89,7 @@
 
 </div>
 <script src="{{asset('js/weather.js')}}"></script>
+<script src="{{asset('js/news.js')}}"></script>
 
 <style>
     /******************************************************************************************/

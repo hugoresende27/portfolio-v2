@@ -36,18 +36,24 @@
                     <div>
 
 
+
                         <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                            <a href="{{route('projects.elastic')}}">
+
+
+
+                            {{--                        SCRAPPER     --}}
+                            <a href="{{route('projects.scraper')}}">
                                 <li class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow">
                                     <div class="flex flex-1 flex-col p-8">
-                                        <img class="mx-auto h-32 w-32 flex-shrink-0"
-                                             src="{{asset('my_images/projects/Elasticsearch_logo.svg')}}" alt="elasticsearch">
+                                        <img class="mx-auto h-32 w-32 flex-shrink-0 rounded-2xl"
+                                             src="{{asset('my_images/projects/scraper.png')}}" alt="scraper">
                                     </div>
 
                                 </li>
                             </a>
 
 
+                            {{--                        HORIZON     --}}
                             <a href="{{route('projects.horizon')}}">
                                 <li class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow">
                                     <div class="flex flex-1 flex-col p-8">
@@ -60,6 +66,19 @@
                                 </li>
                             </a>
 
+                            {{--                        ELASTIC     --}}
+                            <a href="{{route('projects.elastic')}}">
+                                <li class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow">
+                                    <div class="flex flex-1 flex-col p-8">
+                                        <img class="mx-auto h-32 w-32 flex-shrink-0"
+                                             src="{{asset('my_images/projects/Elasticsearch_logo.svg')}}" alt="elasticsearch">
+                                    </div>
+
+                                </li>
+                            </a>
+
+
+                            {{--                        SWAGGER     --}}
                             <a href="{{url('/api/documentation')}}" target="_blank">
                                 <li class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow">
                                     <div class="flex flex-1 flex-col p-8">
@@ -70,15 +89,7 @@
                                 </li>
                             </a>
 
-                            <a href="{{route('projects.scraper')}}">
-                                <li class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow">
-                                    <div class="flex flex-1 flex-col p-8">
-                                        <img class="mx-auto h-32 w-32 flex-shrink-0 rounded-2xl"
-                                             src="{{asset('my_images/projects/scraper.png')}}" alt="scraper">
-                                    </div>
 
-                                </li>
-                            </a>
                         </ul>
 
                     </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\ApiClasses\NewsAPI;
 use App\Http\ApiClasses\WeatherAPI;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ScrapController;
@@ -23,10 +24,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//news ///////////
+Route::get('/get-news', [NewsAPI::class, 'getNews'])->name('get-news');
+
+
+//weather ///////////
 Route::get('/get-weather', [WeatherAPI::class, 'getWeather'])->name('get-weather');
 Route::post('/get-weather-future', [WeatherAPI::class, 'getWeatherFuture'])->name('get-weather-future');
 Route::post('/get-weather-location', [WeatherAPI::class, 'getWeatherLocations'])->name('get-weather-location');
 Route::post('/get-weather-location-future', [WeatherAPI::class, 'getWeatherFuture'])->name('get-weather-location-future');
+
+//contacts /////////
 Route::post('/contact', [ContactController::class, 'store'])->name('store-contact');
 Route::get('/contacts', [ContactController::class, 'show'])->name('store-show');
 

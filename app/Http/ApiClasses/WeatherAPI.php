@@ -7,17 +7,18 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Component\HttpFoundation\Request;
 
-class WeatherAPI
+class WeatherAPI extends ClientAPI
 {
 
     private string $weatherApiToken ;
-    private Client $client;
+    private string $apiUrl;
 
 
     public function __construct()
     {
         $this->weatherApiToken = env('WEATHER_API_TOKEN');
-        $this->client = new Client();
+        $this->apiUrl = "http://api.weatherapi.com";
+        parent::__construct();
     }
 
 
@@ -75,7 +76,7 @@ class WeatherAPI
     public function getWeather(string $city = "Aveiro"): array
     {
         $time = "current";
-        $url = "http://api.weatherapi.com/v1/".$time.".json?key=".$this->weatherApiToken."&q=".$city.'&aqi=no';
+        $url = $this->apiUrl."/v1/".$time.".json?key=".$this->weatherApiToken."&q=".$city.'&aqi=no';
         $request = $this->client->request('GET', $url);
         return json_decode($request->getBody()->getContents(), true);
     }
@@ -116,7 +117,7 @@ class WeatherAPI
             $city = $request->city;
         }
 
-        $url = "http://api.weatherapi.com/v1/".$time.".json?key=".$this->weatherApiToken."&q=".$city."&dt=".$tomorrow;
+        $url = $this->apiUrl."/v1/".$time.".json?key=".$this->weatherApiToken."&q=".$city."&dt=".$tomorrow;
         $request = $this->client->request('GET', $url);
         return json_decode($request->getBody()->getContents(), true);
     }
@@ -129,7 +130,7 @@ class WeatherAPI
     public function getWeatherLocations(Request $request): array
     {
         $city = $request->location ?? "Aveiro";
-        $req = $this->client->request('GET', 'http://api.weatherapi.com/v1/current.json?key='.$this->weatherApiToken.'&q='.$city.'&aqi=no');
+        $req = $this->client->request('GET', $this->apiUrl.'/v1/current.json?key='.$this->weatherApiToken.'&q='.$city.'&aqi=no');
         return json_decode($req->getBody()->getContents(), true);
     }
 
