@@ -14,7 +14,7 @@
                     <div class="">
                         <h4 class="text-sm sm:text-2xl  font-bold">About me</h4>
                         <p class="text-sm sm:text-xl mt-1 text-justify  " style="color:white;">
-                            My name is Hugo Resende and I'm a web developer with a passion for working with databases and REST APIs. I am skilled in Laravel, but I also enjoy exploring new PHP and non-PHP frameworks. I am always looking to learn and grow as a developer, and I am excited about the possibilities that new technologies and frameworks can bring.
+                            Experienced PHP developer with a passion for Laravel framework and MySQL. Skilled in JavaScript, HTML, CSS, and Bootstrap. Dedicated to utilizing Git for version control and collaborating with others to create successful projects.
                         </p>
                     </div>
                 </div>
