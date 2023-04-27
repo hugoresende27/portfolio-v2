@@ -3,7 +3,7 @@
         <div class="mx-auto max-w-2xl lg:max-w-none box2">
             <div class="flex  px-4 py-5 sm:p-6 rounded-lg bg-gray-700 shadow mt-0">
 
-                <div class="mr-4 flex-shrink-0 self-center">
+                <div class="ml-4 flex-shrink-0 self-center">
                         <a href="{{route('projects')}}">
                             <button>
                                 <img class="" src="{{asset('my_images/me.jpg')}}" alt="me">
