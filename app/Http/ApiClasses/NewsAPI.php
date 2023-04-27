@@ -3,6 +3,7 @@
 namespace App\Http\ApiClasses;
 
 use Exception;
+use GuzzleHttp\Exception\GuzzleException;
 
 class NewsAPI extends ClientAPI
 {
@@ -17,6 +18,12 @@ class NewsAPI extends ClientAPI
     }
 
 
+    /**
+     * @param string $query
+     * @param string $language
+     * @return array
+     * @throws GuzzleException
+     */
     public function getNews(
         string $query = "php OR laravel OR chatGPT OR frameworks OR tecnologia",
         string $language = "pt"): array

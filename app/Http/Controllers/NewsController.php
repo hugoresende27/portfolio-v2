@@ -14,9 +14,10 @@ class NewsController extends Controller
     public function index(): View
     {
         $newsApi = new NewsAPI();
-        $news = $newsApi->getNews();
+        $news = $newsApi->getNews("tech","en");
         $allNews = array();
 
+        dd($news);
         foreach ($news['results'] as $new) {
 
             $allNews[]=[
