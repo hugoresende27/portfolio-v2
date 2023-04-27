@@ -17,7 +17,6 @@ class NewsController extends Controller
         $news = $newsApi->getNews("tech","en");
         $allNews = array();
 
-        dd($news);
         foreach ($news['results'] as $new) {
 
             $allNews[]=[
