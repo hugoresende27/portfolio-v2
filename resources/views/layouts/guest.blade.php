@@ -23,7 +23,10 @@
         <div class="flex-grow font-sans text-gray-900 dark:text-gray-100 antialiased">
             {{ $slot }}
         </div>
-        @if(Route::currentRouteName() !== 'welcome' && Route::currentRouteName() !== 'projects.scraper.url')
+        @if(Route::currentRouteName() !== 'welcome'
+            && Route::currentRouteName() !== 'projects.scraper.url'
+            && Route::currentRouteName() !== 'projects.news'
+            )
             <x-footer class="mt-auto"></x-footer>
         @else
             <div class="flex flex-col items-center justify-center">

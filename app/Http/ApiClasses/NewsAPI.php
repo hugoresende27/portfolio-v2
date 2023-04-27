@@ -2,6 +2,8 @@
 
 namespace App\Http\ApiClasses;
 
+use Exception;
+
 class NewsAPI extends ClientAPI
 {
     private string $newsApiToken ;
@@ -19,9 +21,17 @@ class NewsAPI extends ClientAPI
         string $query = "php OR laravel OR chatGPT OR frameworks OR tecnologia",
         string $language = "pt"): array
     {
+        $url = $this->apiUrl . "/1/news?apikey=" . $this->newsApiToken . "&q=" . $query . "&language=" . $language;
 
-        $url = $this->apiUrl."/1/news?apikey=".$this->newsApiToken."&q=".$query."&language=".$language;
-        $request = $this->client->request('GET', $url);
-        return json_decode($request->getBody()->getContents(), true);
+        try {
+            $request = $this->client->request('GET', $url);
+            return json_decode($request->getBody()->getContents(), true);
+        } catch (Exception $e) {
+            // Log the error message for debugging
+             error_log($e->getMessage());
+
+            // Return a custom error message to the user
+            return ['error' => 'Failed to retrieve news. Please try again later.', 'log' => $e->getMessage()];
+        }
     }
 }
