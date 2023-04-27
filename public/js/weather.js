@@ -145,19 +145,16 @@ const getNewsRoute = 'api/get-news';
 
 
 function getNews() {
-
     news.innerHTML = '';
     axios.get(getNewsRoute)
         .then(response => {
-
             const results = response.data.results;
             const maxSize = results.length;
 
-            // const i = Math.floor(Math.random() * maxSize);
             let i = Math.floor(Math.random() * 4);
             const f = Math.floor(Math.random() * maxSize);
-            if (i === f){
-                i++
+            if (i === f) {
+                i++;
             }
 
             const newsTitleI = results[i].title;
@@ -167,7 +164,7 @@ function getNews() {
             const newsItemI = document.createElement('a');
             const newsTitleItemI = document.createElement('p');
             newsItemI.href = newsLinkI;
-            newsTitleItemI.textContent = decodedTitle.textContent;;
+            newsTitleItemI.innerText = decodedTitle.innerText;
             newsItemI.appendChild(newsTitleItemI);
             news.appendChild(newsItemI);
 
@@ -179,7 +176,7 @@ function getNews() {
             newsTitleItemF.style.margin = "2px";
             newsItemF.href = newsLinkF;
             newsItemF.target = "_blank";
-            newsTitleItemF.textContent = newsTitleF;
+            newsTitleItemF.innerText = newsTitleF;
             newsItemF.appendChild(newsTitleItemF);
             news.appendChild(newsItemF);
 
@@ -189,3 +186,4 @@ function getNews() {
             // handle the error here
         });
 }
+

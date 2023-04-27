@@ -3,6 +3,7 @@
 use App\Http\Controllers\ElasticdemoController;
 use App\Http\Controllers\HorizonController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ScrapController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -39,11 +40,20 @@ Route::get('/', [MainController::class, 'welcome'])->name('welcome');
 Route::get('/contact-me', [MainController::class, 'contactMe'])->name('contact-me');
 Route::get('/inspire', [MainController::class, 'reloadInspire'])->name('inspire');
 Route::get('/projects', [MainController::class, 'projects'])->name('projects');
+
+//elastic
 Route::get('/projects/elastic' ,[ElasticdemoController::class, 'index'])->name('projects.elastic');
+
+//horizon
 Route::get('/projects/my-horizon' ,[HorizonController::class, 'index'])->name('projects.horizon');
 Route::get('/projects/my-horizon-start' ,[HorizonController::class, 'startHorizon'])->name('projects.horizon.start');
+
+//scrapper
 Route::get('/projects/scraper' ,[ScrapController::class, 'index'])->name('projects.scraper');
 Route::post('/projects/scraper-url' ,[ScrapController::class, 'scraperWebForm'])->name('projects.scraper.url');
+
+//news
+Route::get('/projects/news' ,[NewsController::class, 'index'])->name('projects.news');
 
 Route::middleware([
     'auth:sanctum',
