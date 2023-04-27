@@ -74,7 +74,7 @@
 
                 {{--                NEWS        --}}
                 <span class="truncate text-sm font-medium text-gray-500">News</span>
-                <dt id="news">
+                <dt id="news" style="color: black">
 
                 </dt>
             </div>

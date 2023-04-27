@@ -161,11 +161,13 @@ function getNews() {
             }
 
             const newsTitleI = results[i].title;
+            const decodedTitle = document.createElement('div');
+            decodedTitle.innerHTML = newsTitleI;
             const newsLinkI = results[i].link;
             const newsItemI = document.createElement('a');
             const newsTitleItemI = document.createElement('p');
             newsItemI.href = newsLinkI;
-            newsTitleItemI.textContent = newsTitleI;
+            newsTitleItemI.textContent = decodedTitle.textContent;;
             newsItemI.appendChild(newsTitleItemI);
             news.appendChild(newsItemI);
 
@@ -173,6 +175,8 @@ function getNews() {
             const newsLinkF = results[f].link;
             const newsItemF = document.createElement('a');
             const newsTitleItemF = document.createElement('p');
+            newsTitleItemF.style.padding = "2px";
+            newsTitleItemF.style.margin = "2px";
             newsItemF.href = newsLinkF;
             newsItemF.target = "_blank";
             newsTitleItemF.textContent = newsTitleF;
