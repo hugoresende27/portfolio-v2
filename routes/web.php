@@ -50,10 +50,12 @@ Route::get('/projects/my-horizon-start' ,[HorizonController::class, 'startHorizo
 
 //scrapper
 Route::get('/projects/scraper' ,[ScrapController::class, 'index'])->name('projects.scraper');
-Route::post('/projects/scraper-url' ,[ScrapController::class, 'scraperWebForm'])->name('projects.scraper.url');
+Route::post('/projects/scraper' ,[ScrapController::class, 'scraperWebForm'])->name('projects.scraper.url');
 
 //news
 Route::get('/projects/news' ,[NewsController::class, 'index'])->name('projects.news');
+Route::post('/projects/news', [NewsController::class, 'submitForm'])->name('submitFormNews');
+
 
 Route::middleware([
     'auth:sanctum',

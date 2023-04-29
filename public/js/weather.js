@@ -145,45 +145,50 @@ const getNewsRoute = 'api/get-news';
 
 
 function getNews() {
-    news.innerHTML = '';
-    axios.get(getNewsRoute)
-        .then(response => {
-            const results = response.data.results;
-            const maxSize = results.length;
+    news.innerHTML = 'No news';
+    try {
+        axios.get(getNewsRoute)
+            .then(response => {
+                const results = response.data.results;
+                const maxSize = results.length;
 
-            let i = Math.floor(Math.random() * 4);
-            const f = Math.floor(Math.random() * maxSize);
-            if (i === f) {
-                i++;
-            }
+                let i = Math.floor(Math.random() * 4);
+                const f = Math.floor(Math.random() * maxSize);
+                if (i === f) {
+                    i++;
+                }
 
-            const newsTitleI = results[i].title;
-            const decodedTitle = document.createElement('div');
-            decodedTitle.innerHTML = newsTitleI;
-            const newsLinkI = results[i].link;
-            const newsItemI = document.createElement('a');
-            const newsTitleItemI = document.createElement('p');
-            newsItemI.href = newsLinkI;
-            newsTitleItemI.innerText = decodedTitle.innerText;
-            newsItemI.appendChild(newsTitleItemI);
-            news.appendChild(newsItemI);
+                const newsTitleI = results[i].title;
+                const decodedTitle = document.createElement('div');
+                decodedTitle.innerHTML = newsTitleI;
+                const newsLinkI = results[i].link;
+                const newsItemI = document.createElement('a');
+                const newsTitleItemI = document.createElement('p');
+                newsItemI.href = newsLinkI;
+                newsTitleItemI.innerText = decodedTitle.innerText;
+                newsItemI.appendChild(newsTitleItemI);
+                news.appendChild(newsItemI);
 
-            const newsTitleF = results[f].title;
-            const newsLinkF = results[f].link;
-            const newsItemF = document.createElement('a');
-            const newsTitleItemF = document.createElement('p');
-            newsTitleItemF.style.padding = "2px";
-            newsTitleItemF.style.margin = "2px";
-            newsItemF.href = newsLinkF;
-            newsItemF.target = "_blank";
-            newsTitleItemF.innerText = newsTitleF;
-            newsItemF.appendChild(newsTitleItemF);
-            news.appendChild(newsItemF);
+                const newsTitleF = results[f].title;
+                const newsLinkF = results[f].link;
+                const newsItemF = document.createElement('a');
+                const newsTitleItemF = document.createElement('p');
+                newsTitleItemF.style.padding = "2px";
+                newsTitleItemF.style.margin = "2px";
+                newsItemF.href = newsLinkF;
+                newsItemF.target = "_blank";
+                newsTitleItemF.innerText = newsTitleF;
+                newsItemF.appendChild(newsTitleItemF);
+                news.appendChild(newsItemF);
 
-        })
-        .catch(error => {
-            console.log(error);
-            // handle the error here
-        });
+            })
+            .catch(error => {
+                console.log(error);
+                // handle the error here
+            });
+    }catch (e){
+
+    }
+
 }
 

@@ -93,22 +93,22 @@ class NewsAPI extends ClientAPI
      *             )
      *         )
      *     ),
-     *     @OA\Response(
-     *         response=500,
-     *         description="Internal server error",
-     *         @OA\JsonContent(
-     *             @OA\Property(
-     *                 property="error",
-     *                 type="string",
-     *                 example="Failed to retrieve news. Please try again later."
-     *             ),
-     *             @OA\Property(
-     *                 property="log",
-     *                 type="string",
-     *                 example="Error message details"
-     *             )
-     *         )
-     *     )
+         *    @OA\Response(
+         *     response=500,
+         *     description="Internal server error",
+         *     @OA\JsonContent(
+         *         @OA\Property(
+         *             property="error",
+         *             type="string",
+         *             example="Failed to retrieve news. Please try again later."
+         *         ),
+         *         @OA\Property(
+         *             property="log",
+         *             type="string",
+         *             example="Error message details"
+         *         )
+         *     )
+         * )
      * )
      * @param string $query
      * @param string $language
@@ -129,7 +129,13 @@ class NewsAPI extends ClientAPI
              error_log($e->getMessage());
 
             // Return a custom error message to the user
-            return ['error' => 'Failed to retrieve news. Please try again later.', 'log' => $e->getMessage()];
+            return [
+                'error' => 'Failed to retrieve news. Please try again later.',
+                'log' => $e->getMessage(),
+                'code' => $e->getCode(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+            ];
         }
     }
 }
