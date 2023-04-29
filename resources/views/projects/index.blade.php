@@ -46,7 +46,7 @@
                                 <li class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow">
                                     <div class="flex flex-1 flex-col p-2">
                                         <img class="mx-auto flex-shrink-0 rounded-2xl object-cover"
-                                             style="width: 50%; height: 50%;"
+                                             style="width: 180px; height: 180px;"
                                              src="{{asset('my_images/projects/scraper.png')}}" alt="scraper">
                                     </div>
 
@@ -59,7 +59,7 @@
                                 <li class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow">
                                     <div class="flex flex-1 flex-col p-2">
                                         <img class="mx-auto flex-shrink-0 rounded-2xl object-cover"
-                                             style="width: 50%; height: 50%;"
+                                             style="width: 180px; height: 180px;"
                                              src="{{asset('my_images/projects/news.png')}}" alt="scraper">
                                     </div>
 
@@ -97,7 +97,7 @@
                                 <li class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow">
                                     <div class="flex flex-1 flex-col p-2">
                                         <img class="mx-auto flex-shrink-0 rounded-2xl object-cover"
-                                             style="width: 50%; height: 50%;"
+                                             style="width: 180px; height: 180px;"
                                              src="{{asset('my_images/projects/swagger.svg')}}" alt="swaggerlogo">
                                     </div>
 
