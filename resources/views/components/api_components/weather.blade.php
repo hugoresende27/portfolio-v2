@@ -73,7 +73,9 @@
 {{--                </dt>--}}
 
                 {{--                NEWS        --}}
-                <span class="truncate text-sm font-medium text-gray-500">News</span>
+                <a href="{{route('projects.news')}}">
+                    <span class="truncate text-sm font-medium text-gray-500">News</span>
+                </a>
                 <dt id="news" style="color: black">
 
                 </dt>
@@ -89,7 +91,7 @@
 
 </div>
 <script src="{{asset('js/weather.js')}}"></script>
-<script src="{{asset('js/news.js')}}"></script>
+
 
 <style>
     /******************************************************************************************/
