@@ -12,7 +12,23 @@ async function handleSubmit(event) {
     event.preventDefault();
     const newsComponent = document.querySelector('#all-news');
     const subject = document.querySelector('#subject').value;
-    console.log(subject)
+    const language = document.querySelector('#language').value;
+    const country = document.querySelector('#country').value;
+    const categories = document.querySelector('#categories'); // select the element with id "categories"
+    const inputs = categories.querySelectorAll('input'); // select all input elements inside the "categories" element
+    const selectedCategories = []; // create an empty array to store selected categories
+
+    inputs.forEach(input => {
+        if (input.checked) { // check if the input is checked
+            selectedCategories.push(input.labels[0].textContent); // push the label of the input into the array
+        }
+    });
+
+    const categoryString = selectedCategories.join(','); // join the array elements into a string with a comma separator
+// log the selected categories string to the console
+
+
+
     newsComponent.innerHTML = "";
     // Get the form data
     // const formData = new FormData(event.target);
@@ -20,8 +36,10 @@ async function handleSubmit(event) {
     await Swal.showLoading();
     // Make an AJAX request to the backend
     axios.post('/projects/news', {
-            language: "pt",
-            subject: subject || "tech"
+            language: language || null,
+            subject: subject || null,
+            country: country || null,
+            category: categoryString || null,
     })
         .then(async response => {
 
@@ -147,3 +165,5 @@ function clearCategories() {
 }
 
 document.querySelector("#clear-btn").addEventListener("click", clearCategories);
+
+/******************************************************************/

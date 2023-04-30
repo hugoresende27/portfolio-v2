@@ -16,22 +16,29 @@ class NewsController extends Controller
     public function index(): View
     {
         $newsApi = new NewsAPI();
-        $news = $newsApi->getNews("tech","en");
+        $news = $newsApi->getNews(null,null,null,null);
 
+        $languagesArray = $newsApi->languagesArray();
+        $countriesArray = $newsApi->countriesArray();
         $allNews = array();
 
         $allNews = $this->getNewsArray($news, $allNews);
 
-        return view('projects.news', compact('allNews'));
+        return view('projects.news', compact('allNews','languagesArray', 'countriesArray'));
     }
 
 
     public function submitForm(Request $request) : array
     {
         $newsApi = new NewsAPI();
-        $language = $request->language;
-        $subject = $request->subject;
-        $news = $newsApi->getNews($subject, $language);
+
+        $language = $request->input('language');
+        $subject = $request->input('subject');
+        $country = $request->input('country');
+        $category = $request->input('category');
+
+        $news = $newsApi->getNews($subject, $language, $country, $category);
+
         $allNews = [];
         return $this->getNewsArray($news, $allNews);
     }
