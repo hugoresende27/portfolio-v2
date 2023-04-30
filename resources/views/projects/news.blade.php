@@ -28,7 +28,7 @@
                         <div class="mx-auto max-w-7xl px-6 lg:px-8">
 
 
-                            <x-api_components.news-form-component  >
+                            <x-api_components.news-form-component  :languagesArray="$languagesArray" :countriesArray="$countriesArray">
                             </x-api_components.news-form-component>
 
                             <x-api_components.news-results-component  :allNews="$allNews"  >
