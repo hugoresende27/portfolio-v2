@@ -145,13 +145,16 @@ const getNewsRoute = 'api/get-news';
 
 
 function getNews() {
-    news.innerHTML = 'No news';
+
     try {
         axios.get(getNewsRoute)
             .then(response => {
                 const results = response.data.results;
                 const maxSize = results.length;
 
+                if (maxSize === 0) {
+                    news.innerHTML = 'No news';
+                }
                 let i = Math.floor(Math.random() * 4);
                 const f = Math.floor(Math.random() * maxSize);
                 if (i === f) {

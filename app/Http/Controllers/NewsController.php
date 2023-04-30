@@ -29,8 +29,9 @@ class NewsController extends Controller
     public function submitForm(Request $request) : array
     {
         $newsApi = new NewsAPI();
-//        $news = $newsApi->getNews($request->category, $request->language);
-        $news = $newsApi->getNews();
+        $language = $request->language;
+        $subject = $request->subject;
+        $news = $newsApi->getNews($subject, $language);
         $allNews = [];
         return $this->getNewsArray($news, $allNews);
     }
@@ -44,18 +45,33 @@ class NewsController extends Controller
     {
         if (isset($news['results'])) {
             foreach ($news['results'] as $new) {
-                $allNews[] = [
-                    'title' => $new['title'],
-                    'link' => $new['link'],
-                    'creator' => $new['creator'],
-                    'description' => $new['description'],
-                    'content' => $new['content'],
-                    'pubDate' => $new['pubDate'],
-                    'image_url' => $new['image_url'],
-                    'country' => $new['country'],
-                ];
+                //first where image_url not null
+                if($new['image_url'] != null) {
+                    array_unshift($allNews, [
+                        'title' => $new['title'],
+                        'link' => $new['link'],
+                        'creator' => $new['creator'],
+                        'description' => $new['description'],
+                        'content' => $new['content'],
+                        'pubDate' => $new['pubDate'],
+                        'image_url' => $new['image_url'],
+                        'country' => $new['country'],
+                    ]);
+                } else {
+                    $allNews[] = [
+                        'title' => $new['title'],
+                        'link' => $new['link'],
+                        'creator' => $new['creator'],
+                        'description' => $new['description'],
+                        'content' => $new['content'],
+                        'pubDate' => $new['pubDate'],
+                        'image_url' => $new['image_url'],
+                        'country' => $new['country'],
+                    ];
+                }
             }
         }
         return $allNews;
     }
+
 }

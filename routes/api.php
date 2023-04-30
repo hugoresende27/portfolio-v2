@@ -3,6 +3,7 @@
 use App\Http\ApiClasses\NewsAPI;
 use App\Http\ApiClasses\WeatherAPI;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ScrapController;
 use App\Http\Controllers\HorizonController;
 use App\Http\Controllers\SwaggerController;
@@ -26,7 +27,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //news ///////////
 Route::get('/get-news', [NewsAPI::class, 'getNews'])->name('get-news');
-
+Route::post('/projects/news', [NewsController::class, 'submitForm'])->name('submitFormNews');
 
 //weather ///////////
 Route::get('/get-weather', [WeatherAPI::class, 'getWeather'])->name('get-weather');

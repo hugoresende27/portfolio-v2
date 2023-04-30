@@ -11,19 +11,25 @@ async function handleSubmit(event) {
 
     event.preventDefault();
     const newsComponent = document.querySelector('#all-news');
+    const subject = document.querySelector('#subject').value;
+    console.log(subject)
     newsComponent.innerHTML = "";
     // Get the form data
-    const formData = new FormData(event.target);
+    // const formData = new FormData(event.target);
+
     await Swal.showLoading();
     // Make an AJAX request to the backend
-    axios.post('/projects/news', formData)
+    axios.post('/projects/news', {
+            language: "pt",
+            subject: subject || "tech"
+    })
         .then(async response => {
 
             if (response.data.length === 0) {
 
                 await Swal.fire({
                     title: 'Oh Oh',
-                    html: 'No more news today, come again tomorrow...',
+                    html: 'No news ...',
                     color: 'white',
                     background: '#f55426',
                     confirmButtonColor: '#030303',
@@ -38,13 +44,15 @@ async function handleSubmit(event) {
 
             let newsHtml = '';
             response.data.forEach(newItem => {
+
                 newsHtml += `
                                     <article class="flex max-w-xl flex-col items-start justify-between">
                                       <div class="flex items-center gap-x-4 text-xs">
                                         <time datetime="${newItem.pubDate}" class="text-gray-500">${newItem.pubDate}</time>
                                         <a href="#" class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">
-                                          ${newItem.creator[0] ?? 'HR News'}
+                                            ${newItem.creator && newItem.creator.length > 0 ? newItem.creator[0] : 'HR News'}
                                         </a>
+
                                       </div>
                                       <div class="group relative">
                                         <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -64,7 +72,7 @@ async function handleSubmit(event) {
                                           <p class="font-semibold text-gray-900">
                                             <a href="#">
                                               <span class="absolute inset-0"></span>
-                                              ${newItem.creator[0] ?? 'HR News'}
+                                                ${newItem.creator && newItem.creator.length > 0 ? newItem.creator[0] : 'HR News'}
                                             </a>
                                           </p>
                                           <p class="text-gray-600">${newItem.country[0] ?? 'HR News'}</p>
@@ -79,6 +87,8 @@ async function handleSubmit(event) {
 
         })
         .catch(async error => {
+
+            console.log(error)
             await Swal.fire({
                 title: 'Error',
                 html: error,
