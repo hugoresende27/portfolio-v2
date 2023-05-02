@@ -2,6 +2,7 @@
 
 use App\Http\ApiClasses\NewsAPI;
 use App\Http\ApiClasses\WeatherAPI;
+use App\Http\Controllers\ApiMakerController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ScrapController;
@@ -24,6 +25,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+//api maker /////////
+Route::post('/api-maker', [ApiMakerController::class, 'makeApi'])->name('apimaker.make-model');
+
 
 //news ///////////
 Route::get('/get-news', [NewsAPI::class, 'getNews'])->name('get-news');

@@ -40,6 +40,17 @@
                         <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 
 
+                            {{--                        API MAKER     --}}
+                            <a href="{{route('projects.apimaker')}}">
+                                <li class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow">
+                                    <div class="flex flex-1 flex-col p-2">
+                                        <img class="mx-auto flex-shrink-0 rounded-2xl object-cover"
+                                             style="width: 180px; height: 180px;"
+                                             src="{{asset('my_images/projects/apimaker.png')}}" alt="scraper">
+                                    </div>
+
+                                </li>
+                            </a>
 
                             {{--                        SCRAPPER     --}}
                             <a href="{{route('projects.scraper')}}">

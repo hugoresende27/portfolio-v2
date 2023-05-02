@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiMakerController;
 use App\Http\Controllers\ElasticdemoController;
 use App\Http\Controllers\HorizonController;
 use App\Http\Controllers\MainController;
@@ -56,6 +57,8 @@ Route::post('/projects/scraper' ,[ScrapController::class, 'scraperWebForm'])->na
 Route::get('/projects/news' ,[NewsController::class, 'index'])->name('projects.news');
 Route::post('/projects/news', [NewsController::class, 'submitForm'])->name('submitFormNews');
 
+//api maker
+Route::get('/projects/apimaker' ,[ApiMakerController::class, 'index'])->name('projects.apimaker');
 
 Route::middleware([
     'auth:sanctum',
