@@ -17,15 +17,44 @@ class ApiMakerController extends Controller
     {
         // Get the JSON payload from the request and convert it to an array
         $payload = json_decode($request->getContent());
-//        var_dump($payload);
         $modelName = $payload->modelName;
+        $columns = $payload->columns;
         $model = $this->makeModel($modelName);
-        dd($model);
+        $migration = $this->makeMigration($columns,$modelName);
+        dd($migration);
 
 
 
 
     }
+
+    public function makeMigration(object $columns, string $modelName)
+    {
+
+        $migrationSchema = "\$table->id();\n";
+        foreach ($columns as $column) {
+            $columnName = $column->name;
+            $columnType = $column->type;
+            $migrationSchema .= "\$table->$columnType('$columnName');";
+        }
+        var_dump($migrationSchema);
+        Artisan::call('make:migration', [
+            'name' => "create_" . strtolower($modelName) . "_table",
+            '--create' => strtolower($modelName),
+            '--table' => strtolower($modelName),
+            '--path' => 'database/migrations',
+            '--schema' => $migrationSchema,
+        ]);
+
+        $artisan = Artisan::output();
+//        if (str_contains($artisan, 'ERROR')) {
+            return $artisan;
+//        } else {
+//            return true;
+//        }
+    }
+
+
 
     /**
      * @param string $modelName
