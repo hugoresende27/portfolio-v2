@@ -28,6 +28,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //api maker /////////
 Route::post('/api-maker', [ApiMakerController::class, 'makeApi'])->name('apimaker.make-model');
 
+/**API_MAKER**/
+Route::apiResource('/api-maker/post20230504203825', \App\Http\Controllers\Post20230504203825Controller::class );
+
+
+
+
+
+
+
+
+
+
 
 //news ///////////
 Route::get('/get-news', [NewsAPI::class, 'getNews'])->name('get-news');
