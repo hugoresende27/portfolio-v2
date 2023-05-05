@@ -26,10 +26,12 @@ class Properties20230505184740Controller extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    
-        
-        
-        public function store(Request $request)
+
+
+
+
+
+        public function store(Request $request): \Illuminate\Http\JsonResponse
         {
             $validatedData = $request->validate([
 					'title' => 'required|string',
@@ -38,7 +40,7 @@ class Properties20230505184740Controller extends Controller
 					'show_price' => 'required|boolean',
 					'show_address' => 'required|boolean',]);
             $post = new Properties20230505184740;
-            
+
 					$post->title = $validatedData['title'];
 					$post->reference = $validatedData['reference'];
 					$post->price = $validatedData['price'];
@@ -51,9 +53,10 @@ class Properties20230505184740Controller extends Controller
     /**
      * Display the specified resource.
      */
-    
-        
-        public function show(Properties20230505184740 $properties20230505184740)
+
+
+
+        public function show(Properties20230505184740 $properties20230505184740): Properties20230505184740
         {
             return $properties20230505184740;
         }
@@ -69,16 +72,38 @@ class Properties20230505184740Controller extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Properties20230505184740 $properties20230505184740)
+    public function update(Request $request, Properties20230505184740 $properties20230505184740): \Illuminate\Http\JsonResponse
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|string',
+            'reference' => 'required|string',
+            'price' => 'required|numeric',
+            'show_price' => 'required|boolean',
+            'show_address' => 'required|boolean',
+        ]);
+
+
+        $properties20230505184740->title = $validatedData['title'];
+        $properties20230505184740->reference = $validatedData['reference'];
+        $properties20230505184740->price = $validatedData['price'];
+        $properties20230505184740->show_price = $validatedData['show_price'];
+        $properties20230505184740->show_address = $validatedData['show_address'];
+
+        $properties20230505184740->save();
+
+        return response()->json([
+            'message' => 'Properties20230505184740 updated successfully',
+            'data' => $properties20230505184740,
+        ]);
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Properties20230505184740 $properties20230505184740)
-    {
-        //
-    }
+
+        public function destroy(Properties20230505184740 $properties20230505184740): ?bool
+        {
+            return $properties20230505184740->delete();
+        }
 }

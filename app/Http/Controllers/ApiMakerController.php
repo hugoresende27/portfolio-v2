@@ -58,9 +58,10 @@ class ApiMakerController extends Controller
                 $dataToStore .= "\n\t\t\t\t\t\$post->".$data['name']." = \$validatedData['".$data['name']."'];";
             }
 
+            $lowModelName = mb_strtolower($modelName);
             $functionStore =
                 "
-        public function store(Request \$request)
+        public function store(Request \$request) : \Illuminate\Http\JsonResponse
         {
             \$validatedData = \$request->validate([".$dataToValidate."]);
             \$post = new ".$modelName.";
@@ -79,7 +80,7 @@ class ApiMakerController extends Controller
 
             $functionShow =
                 "
-        public function show(".$modelName." \$".mb_strtolower($modelName).")
+        public function show(".$modelName." \$".$lowModelName.") : ".$modelName."
         {
             return \$".mb_strtolower($modelName).";
         }";
@@ -88,6 +89,22 @@ class ApiMakerController extends Controller
             $apiMakerControllerContent = preg_replace(
                 '/public\s+function\s+show\('.$modelName.'\s+\$'.$lowModelName.'\)\s+{[^}]*}/s',
                 $functionShow,
+                $apiMakerControllerContent
+            );
+            file_put_contents($apiMakerControllerPath, $apiMakerControllerContent);
+
+
+
+            $functionDestroy =  "
+        public function destroy(".$modelName." \$".$lowModelName.") : ?bool
+        {
+            return \$".$lowModelName."->delete();
+        }";
+
+
+            $apiMakerControllerContent = preg_replace(
+                '/public\s+function\s+destroy\('.$modelName.'\s+\$'.$lowModelName.'\)\s+{[^}]*}/s',
+                $functionDestroy,
                 $apiMakerControllerContent
             );
             file_put_contents($apiMakerControllerPath, $apiMakerControllerContent);
