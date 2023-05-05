@@ -20,10 +20,20 @@ class ApiMakerController extends Controller
         $modelName = $payload->modelName.now()->format('YmdHis');
         $columns = $payload->columns;
 
+//        $this->makeModelRunMigrationRoute($modelName, $columns);
+
+        $modelName = "Properties20230505184740";
+
+        $this->fillCRUDfunctions($modelName, $columns);
 
 
 
-        $modelName = "Post20230504203825";//TODO dev tests
+
+    }
+
+
+    private function fillCRUDfunctions(string $modelName, object $columns): void
+    {
 
         $controllerName = $modelName."Controller.php";
         $apiMakerControllerPath = app_path('Http/Controllers/'.$controllerName);
@@ -32,10 +42,11 @@ class ApiMakerController extends Controller
         foreach ($columns as $column) {
             $arrayData[] = [
                 "name" => mb_strtolower($column->name),
-                "type" => $column->type
+                "type" => $this->getValidatorType( $column->type)
             ];
         }
         if (!empty($arrayData)) {
+
             $dataToValidate = "";
             foreach ($arrayData as $data) {
                 $dataToValidate .= "\n\t\t\t\t\t'".$data['name']."' => 'required|".$data['type']."',";
@@ -46,7 +57,8 @@ class ApiMakerController extends Controller
             foreach ($arrayData as $data) {
                 $dataToStore .= "\n\t\t\t\t\t\$post->".$data['name']." = \$validatedData['".$data['name']."'];";
             }
-            $function =
+
+            $functionStore =
                 "
         public function store(Request \$request)
         {
@@ -59,19 +71,43 @@ class ApiMakerController extends Controller
 
             $apiMakerControllerContent = preg_replace(
                 '/public\s+function\s+store\(Request\s+\$request\)\s+{[^}]*}/s',
-                $function,
+                $functionStore,
+                $apiMakerControllerContent
+            );
+            file_put_contents($apiMakerControllerPath, $apiMakerControllerContent);
+
+
+            $functionShow =
+                "
+        public function show(".$modelName." \$".mb_strtolower($modelName).")
+        {
+            return \$".mb_strtolower($modelName).";
+        }";
+
+            $lowModelName = mb_strtolower($modelName);
+            $apiMakerControllerContent = preg_replace(
+                '/public\s+function\s+show\('.$modelName.'\s+\$'.$lowModelName.'\)\s+{[^}]*}/s',
+                $functionShow,
                 $apiMakerControllerContent
             );
             file_put_contents($apiMakerControllerPath, $apiMakerControllerContent);
         }
 
-
-//        echo $this->makeModelRunMigrationRoute($modelName, $columns);
-
-
-
-
     }
+
+
+
+    //Todo finish this with match case
+    private function getValidatorType(string $type): string
+    {
+        if ($type =="text") {
+            $type ="string";
+        } else if ($type == "float"){
+            $type ="numeric";
+        }
+        return $type;
+    }
+
 
     /**
      * @param string $modelName

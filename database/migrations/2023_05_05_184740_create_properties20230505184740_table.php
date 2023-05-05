@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('post20230504203825s', function (Blueprint $table) {
+        Schema::create('properties20230505184740s', function (Blueprint $table) {
             $table->id();
-			$table->text('author');
 			$table->text('title');
-			$table->date('date');
-			$table->integer('number');
+			$table->text('reference');
+			$table->float('price');
+			$table->boolean('show_price');
+			$table->boolean('show_address');
 			
             $table->timestamps();
         });
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('post20230504203825');
+        Schema::dropIfExists('properties20230505184740');
     }
 };
