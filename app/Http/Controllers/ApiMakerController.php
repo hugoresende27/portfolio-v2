@@ -59,6 +59,8 @@ class ApiMakerController extends Controller
             }
 
             $lowModelName = mb_strtolower($modelName);
+
+            ////////////// CREATE STORE FUNCTION ////////////////////////////////////
             $functionStore =
                 "
         public function store(Request \$request) : \Illuminate\Http\JsonResponse
@@ -77,7 +79,38 @@ class ApiMakerController extends Controller
             );
             file_put_contents($apiMakerControllerPath, $apiMakerControllerContent);
 
+            ////////////// CREATE UPDATE FUNCTION ////////////////////////////////////
+            $dataToUpdate = "";
+            foreach ($arrayData as $data) {
+                $dataToUpdate .= "\n\t\t\t\t\t\$".$lowModelName."->".$data['name']." = \$validatedData['".$data['name']."'];";
+            }
+            $functionUpdate =
+                "
+        public function update(Request \$request, ".$modelName." \$".$lowModelName.") : \Illuminate\Http\JsonResponse
+        {
+            \$validatedData = \$request->validate([".$dataToValidate."]);
+            \n"
+            .$dataToUpdate.
+                "
+            \$".$lowModelName."->save();
 
+             return response()->json([
+                'message' => '".$lowModelName." updated successfully',
+                'data' => \$".$lowModelName.",
+            ]);
+        }";
+
+
+            $apiMakerControllerContent = preg_replace(
+                '/public\s+function\s+update\(Request\s+\$request,\s+'.$modelName.'\s+\$'.$lowModelName.'\)\s+{[^}]*}/s',
+                $functionUpdate,
+                $apiMakerControllerContent
+            );
+
+            $put = file_put_contents($apiMakerControllerPath, $apiMakerControllerContent);
+//            dd($put);
+
+            ////////////// CREATE SHOW FUNCTION ////////////////////////////////////
             $functionShow =
                 "
         public function show(".$modelName." \$".$lowModelName.") : ".$modelName."
@@ -95,6 +128,7 @@ class ApiMakerController extends Controller
 
 
 
+            ////////////// CREATE DESTROY FUNCTION ////////////////////////////////////
             $functionDestroy =  "
         public function destroy(".$modelName." \$".$lowModelName.") : ?bool
         {
