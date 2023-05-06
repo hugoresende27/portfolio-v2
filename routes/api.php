@@ -29,7 +29,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/api-maker', [ApiMakerController::class, 'makeApi'])->name('apimaker.make-model')->name('projects.apimaker.post');
 
 /**API_MAKER**/
-Route::apiResource('/api-maker/properties20230506174632', \App\Http\Controllers\Properties20230506174632Controller::class );
+Route::apiResource('/api-maker/teste20230506225452', \App\Http\Controllers\Teste20230506225452Controller::class );
+Route::apiResource('/api-maker/teste20230506225448', \App\Http\Controllers\Teste20230506225448Controller::class );
+Route::apiResource('/api-maker/teste20230506224859', \App\Http\Controllers\Teste20230506224859Controller::class );
+Route::apiResource('/api-maker/teste20230506224316', \App\Http\Controllers\Teste20230506224316Controller::class );
+
 
 
 
