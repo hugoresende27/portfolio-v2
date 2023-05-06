@@ -50,11 +50,16 @@ addButton.addEventListener("click", function() {
     option4.value = "data";
     option4.textContent = "Data";
 
+    const option5 = document.createElement("option");
+    option5.value = "boolean";
+    option5.textContent = "Boolean";
+
     // add the options to the select element
     newFieldTypeSelect.appendChild(option1);
     newFieldTypeSelect.appendChild(option2);
     newFieldTypeSelect.appendChild(option3);
     newFieldTypeSelect.appendChild(option4);
+    newFieldTypeSelect.appendChild(option5);
 
     // append the label and input element for column name to the new div
     newFieldDiv.appendChild(newFieldNameLabel);

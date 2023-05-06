@@ -10,12 +10,14 @@ class ApiMakerController extends Controller
 {
     public function index()
     {
-        return view ('projects.apimaker');
+        return view ('projects.apimaker.index');
     }
 
 
-    public function handleForm(Request $request)
+    public function handleFormRequest(Request $request)
     {
+
+
         $modelName = $request->modelName;
         $count = 1;
         $colName = "colName".$count;
@@ -42,11 +44,13 @@ class ApiMakerController extends Controller
 
 
         // Create a new Request object with JSON data
-        $request = Request::create('/your/api/endpoint', 'POST', [], [], [], [], json_encode($jsonData));
+        $request = Request::create(route('projects.apimaker'), 'POST', [], [], [], [], json_encode($jsonData));
+
 
         $makeApi = $this->makeApi($request);
+        $makeApi = json_decode($makeApi->getContent());
 
-        return $makeApi;
+        return view ('projects.apimaker.final', compact('makeApi'));
 
     }
     /**
@@ -73,10 +77,10 @@ class ApiMakerController extends Controller
             'modelName' => $modelName,
             'columns' => $columns,
             'routes' => [
-                'GET|HEAD ' => "api/api-maker/".$lowModelName." ............. ".$lowModelName.".index › ".$modelName."Controller@index",
+                'GET' => "api/api-maker/".$lowModelName." ............. ".$lowModelName.".index › ".$modelName."Controller@index",
                 'POST' => "api/api-maker/".$lowModelName." ............. ".$lowModelName.".store › ".$modelName."Controller@store",
-                'PUT|PATCH' => "api/api-maker/".$lowModelName."/{".$lowModelName."} ............. ".$lowModelName.".show › ".$modelName."Controller@show",
-                'GET|HEAD' => "api/api-maker/".$lowModelName."/{".$lowModelName."} ............. ".$lowModelName.".update › ".$modelName."Controller@update",
+                'PUT' => "api/api-maker/".$lowModelName."/{".$lowModelName."} ............. ".$lowModelName.".show › ".$modelName."Controller@show",
+                'GET1' => "api/api-maker/".$lowModelName."/{".$lowModelName."} ............. ".$lowModelName.".update › ".$modelName."Controller@update",
                 'DELETE' => "api/api-maker/".$lowModelName."/{".$lowModelName."} ............. ".$lowModelName.".destroy › ".$modelName."Controller@destroy",
             ]
         ]);

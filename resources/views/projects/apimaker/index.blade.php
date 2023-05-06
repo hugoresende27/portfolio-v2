@@ -79,6 +79,7 @@
                                                             <option value = "float">Decimal</option>
                                                             <option value = "text">Text</option>
                                                             <option value = "data">Data</option>
+                                                            <option value = "boolean">Boolean</option>
                                                         </select>
                                                     </div>
                                                 </div>

@@ -59,7 +59,7 @@ Route::post('/projects/news', [NewsController::class, 'submitForm'])->name('subm
 
 //api maker
 Route::get('/projects/apimaker' ,[ApiMakerController::class, 'index'])->name('projects.apimaker');
-Route::post('/projects/apimaker' ,[ApiMakerController::class, 'handleForm'])->name('projects.apimaker.post');
+Route::post('/projects/apimaker' ,[ApiMakerController::class, 'handleFormRequest'])->name('projects.apimaker.post');
 
 Route::middleware([
     'auth:sanctum',
