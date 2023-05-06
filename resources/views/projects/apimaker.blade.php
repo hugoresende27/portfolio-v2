@@ -27,7 +27,8 @@
                     <div class="bg-white py-6 sm:py-12">
                         <div class="mx-auto max-w-7xl px-6 lg:px-8">
 
-                            <form>
+                            <form method="POST" action="{{route('projects.apimaker.post')}}">
+                                @csrf
                                 <div class="space-y-12">
                                     <div class="border-b border-gray-900/10 pb-12">
 
@@ -38,7 +39,7 @@
                                                 <label for="modelName" class="block text-sm font-medium leading-6 text-gray-900">Model name</label>
                                                 <div class="mt-2">
                                                     <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                                                        <input type="text" name="modelName" id="modelName" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Post">
+                                                        <input required type="text" name="modelName" id="modelName" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Post">
                                                     </div>
                                                 </div>
                                             </div>
@@ -66,14 +67,14 @@
 
 
                                                 <div class="sm:col-span-3">
-                                                    <label for="colName" class="block text-sm font-medium leading-6 text-gray-900">Column Name</label>
+                                                    <label for="colName1" class="block text-sm font-medium leading-6 text-gray-900">Column Name</label>
                                                     <div class="mt-2">
-                                                        <input type="text" name="colName" id="colName" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                                        <input required type="text" name="colName1" id="colName" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                                     </div>
 
-                                                    <label for="colType" class="block text-sm font-medium leading-6 text-gray-900">Column Type</label>
+                                                    <label for="colType1" class="block text-sm font-medium leading-6 text-gray-900">Column Type</label>
                                                     <div class="mt-2">
-                                                        <select id="colType" name="colType" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                                        <select id="colType1" name="colType1" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                                                             <option value = "integer">Integer</option>
                                                             <option value = "float">Decimal</option>
                                                             <option value = "text">Text</option>

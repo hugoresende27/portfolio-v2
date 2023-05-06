@@ -14,6 +14,41 @@ class ApiMakerController extends Controller
     }
 
 
+    public function handleForm(Request $request)
+    {
+        $modelName = $request->modelName;
+        $count = 1;
+        $colName = "colName".$count;
+        $colType = "colType".$count;
+
+        $columnsObj = new \stdClass();
+
+        while (isset($request->{$colName})) {
+            $columnNumber = 'column'.$count;
+
+            $columnsObj->{$columnNumber} = new \stdClass();
+            $columnsObj->{$columnNumber}->name = $request->{$colName};
+            $columnsObj->{$columnNumber}->type = $request->{$colType};
+
+            $count++;
+            $colName = "colName".$count;
+            $colType = "colType".$count;
+        }
+
+        $jsonData = [
+            'modelName' => $modelName,
+            'columns' => $columnsObj
+        ];
+
+
+        // Create a new Request object with JSON data
+        $request = Request::create('/your/api/endpoint', 'POST', [], [], [], [], json_encode($jsonData));
+
+        $makeApi = $this->makeApi($request);
+
+        return $makeApi;
+
+    }
     /**
      * @param Request $request
      * @return JsonResponse
@@ -22,9 +57,11 @@ class ApiMakerController extends Controller
     {
         // Get the JSON payload from the request and convert it to an array
         $payload = json_decode($request->getContent());
-        $modelName = $payload->modelName.now()->format('YmdHis');
+        $modelName = $payload->modelName;
         $columns = $payload->columns;
         $lowModelName = mb_strtolower($modelName);
+        $modelName = ucfirst($modelName). now()->format('YmdHis');
+
 
         $this->makeModelRunMigrationRoute($modelName, $columns);
 
