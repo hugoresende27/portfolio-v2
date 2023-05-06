@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 
@@ -13,25 +14,45 @@ class ApiMakerController extends Controller
     }
 
 
-    public function makeApi(Request $request)
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function makeApi(Request $request): JsonResponse
     {
         // Get the JSON payload from the request and convert it to an array
         $payload = json_decode($request->getContent());
         $modelName = $payload->modelName.now()->format('YmdHis');
         $columns = $payload->columns;
+        $lowModelName = mb_strtolower($modelName);
 
-//        $this->makeModelRunMigrationRoute($modelName, $columns);
+        $this->makeModelRunMigrationRoute($modelName, $columns);
 
-        $modelName = "Properties20230505184740";
 
         $this->fillCRUDfunctions($modelName, $columns);
 
 
+        return response()->json([
+            'modelName' => $modelName,
+            'columns' => $columns,
+            'routes' => [
+                'GET|HEAD ' => "api/api-maker/".$lowModelName." ............. ".$lowModelName.".index › ".$modelName."Controller@index",
+                'POST' => "api/api-maker/".$lowModelName." ............. ".$lowModelName.".store › ".$modelName."Controller@store",
+                'PUT|PATCH' => "api/api-maker/".$lowModelName."/{".$lowModelName."} ............. ".$lowModelName.".show › ".$modelName."Controller@show",
+                'GET|HEAD' => "api/api-maker/".$lowModelName."/{".$lowModelName."} ............. ".$lowModelName.".update › ".$modelName."Controller@update",
+                'DELETE' => "api/api-maker/".$lowModelName."/{".$lowModelName."} ............. ".$lowModelName.".destroy › ".$modelName."Controller@destroy",
+            ]
+        ]);
 
 
     }
 
 
+    /**
+     * @param string $modelName
+     * @param object $columns
+     * @return void
+     */
     private function fillCRUDfunctions(string $modelName, object $columns): void
     {
 
@@ -143,6 +164,22 @@ class ApiMakerController extends Controller
             );
             file_put_contents($apiMakerControllerPath, $apiMakerControllerContent);
         }
+
+        ////////////// CREATE show all FUNCTION ////////////////////////////////////
+            $functionShow =  "
+        public function index(): \Illuminate\Database\Eloquent\Collection
+        {
+            return ".$modelName."::all();
+        }";
+
+
+            $apiMakerControllerContent = preg_replace(
+                '/public function index\(\)\s*{\s*}/',
+                $functionShow,
+                $apiMakerControllerContent
+            );
+            file_put_contents($apiMakerControllerPath, $apiMakerControllerContent);
+
 
     }
 
