@@ -26,6 +26,7 @@
         @if(Route::currentRouteName() !== 'welcome'
             && Route::currentRouteName() !== 'projects.scraper.url'
             && Route::currentRouteName() !== 'projects.news'
+            && Route::currentRouteName() !== 'projects.apimaker'
             )
             <x-footer class="mt-auto"></x-footer>
         @else
