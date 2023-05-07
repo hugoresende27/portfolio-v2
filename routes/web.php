@@ -60,6 +60,8 @@ Route::post('/projects/news', [NewsController::class, 'submitForm'])->name('subm
 //api maker
 Route::get('/projects/apimaker' ,[ApiMakerController::class, 'index'])->name('projects.apimaker');
 Route::post('/projects/apimaker' ,[ApiMakerController::class, 'handleFormRequest'])->name('projects.apimaker.post');
+Route::get('/projects/apimaker/endpoints' ,[ApiMakerController::class, 'showEndpoints'])->name('projects.apimaker.endpoints');
+Route::get('/projects/apimaker/create' ,[ApiMakerController::class, 'showCreate'])->name('projects.apimaker.create');
 
 Route::middleware([
     'auth:sanctum',
