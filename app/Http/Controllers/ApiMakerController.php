@@ -8,11 +8,25 @@ use Illuminate\Support\Facades\Artisan;
 
 class ApiMakerController extends Controller
 {
+
+
     public function index()
     {
         return view ('projects.apimaker.index');
     }
 
+    public function showCreate()
+    {
+        $makeApi = session('makeApi');
+        return view ('projects.apimaker.create', compact('makeApi'));
+    }
+
+    public function showEndpoints()
+    {
+        // Retrieve the value from the session
+        $makeApi = session('makeApi');
+        return view ('projects.apimaker.final', compact('makeApi'));
+    }
 
     public function handleFormRequest(Request $request)
     {
@@ -50,6 +64,10 @@ class ApiMakerController extends Controller
         $makeApi = $this->makeApi($request);
         $makeApi = json_decode($makeApi->getContent());
 
+        // Store the $apiMaker variable in the session
+        session(['makeApi' => $makeApi]);
+
+
         return view ('projects.apimaker.final', compact('makeApi'));
 
     }
@@ -63,9 +81,9 @@ class ApiMakerController extends Controller
         $payload = json_decode($request->getContent());
         $modelName = $payload->modelName;
         $columns = $payload->columns;
-        $lowModelName = mb_strtolower($modelName);
-        $modelName = ucfirst($modelName). now()->format('YmdHis');
 
+        $modelName = ucfirst($modelName). now()->format('YmdHis');
+        $lowModelName = mb_strtolower($modelName);
 
         $this->makeModelRunMigrationRoute($modelName, $columns);
 
@@ -122,6 +140,21 @@ class ApiMakerController extends Controller
 
             $lowModelName = mb_strtolower($modelName);
 
+            ////////////// CREATE show all (index) FUNCTION ////////////////////////////////////
+            $functionShowAll =  "
+        public function index(): \Illuminate\Database\Eloquent\Collection
+        {
+            return ".$modelName."::all();
+        }";
+
+
+            $apiMakerControllerContent = preg_replace(
+                '/public function index\(\)[^{]*\{[^}]*\}/s',
+                $functionShowAll,
+                $apiMakerControllerContent
+            );
+            file_put_contents($apiMakerControllerPath, $apiMakerControllerContent);
+
             ////////////// CREATE STORE FUNCTION ////////////////////////////////////
             $functionStore =
                 "
@@ -169,8 +202,8 @@ class ApiMakerController extends Controller
                 $apiMakerControllerContent
             );
 
-            $put = file_put_contents($apiMakerControllerPath, $apiMakerControllerContent);
-//            dd($put);
+            file_put_contents($apiMakerControllerPath, $apiMakerControllerContent);
+
 
             ////////////// CREATE SHOW FUNCTION ////////////////////////////////////
             $functionShow =
@@ -206,20 +239,8 @@ class ApiMakerController extends Controller
             file_put_contents($apiMakerControllerPath, $apiMakerControllerContent);
         }
 
-        ////////////// CREATE show all FUNCTION ////////////////////////////////////
-            $functionShow =  "
-        public function index(): \Illuminate\Database\Eloquent\Collection
-        {
-            return ".$modelName."::all();
-        }";
 
 
-            $apiMakerControllerContent = preg_replace(
-                '/public function index\(\)\s*{\s*}/',
-                $functionShow,
-                $apiMakerControllerContent
-            );
-            file_put_contents($apiMakerControllerPath, $apiMakerControllerContent);
 
 
     }
@@ -311,7 +332,12 @@ class ApiMakerController extends Controller
         $migrationSchema = '';
         foreach ($columns as $column) {
             $columnName = mb_strtolower( $column->name);
-            $columnType = $column->type;
+            if ($column->type == mb_strtolower("data")) {
+                $columnType = "dateTime";
+            } else {
+                $columnType = $column->type;
+            }
+
             $migrationSchema .= "\$table->$columnType('$columnName');\n\t\t\t";
         }
 

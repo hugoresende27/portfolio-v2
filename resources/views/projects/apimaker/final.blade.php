@@ -24,55 +24,59 @@
         <div class="mt-10 overflow-x-hidden">
             <div class="grid grid-cols-12 gap-4">
                 <div class="col-span-3 bg-white rounded-2xl p-5 text-center p-3 m-3 ">
-                    <style>
-                        li {
-                            list-style-type: none;
-                            margin: 10px;
-                        }
-                    </style>
-                    <div class="mt-10 mb-auto">
-                        <li>
-                          <button type="button" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
-                              Endpoints
-                          </button>
-                        </li>
 
-                        <li>
-                            <button type="button" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
-                                Create
-                            </button>
-                        </li>
+                    <x-makeapi.side-menu-component>
 
-                        <li>
-                            <button type="button" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
-                                Update
-                            </button>
-                        </li>
-
-                        <li>
-                          <button type="button" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
-                              Show
-                          </button>
-                        </li>
-
-                        <li>
-                            <button type="button" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
-                                Show All
-                            </button>
-                        </li>
-
-
-
-                        <li>
-                            <button type="button" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
-                                Delete
-                            </button>
-                        </li>
-                    </div>
+                    </x-makeapi.side-menu-component>
 
 
                 </div>
                 <div class="col-span-9 bg-white rounded-2xl p-5">
+
+                    <div class="text-center">
+                        <p>Model Details</p>
+                    </div>
+                    <ul role="list" class="divide-y divide-gray-100">
+
+                        <li class="flex justify-between gap-x-6 py-5">
+                            <div class="flex gap-x-4">
+                                <div class="min-w-0 flex-auto">
+                                    <p class="text-sm font-semibold leading-6 text-gray-900">Model Name</p>
+                                </div>
+                            </div>
+                            <div class="hidden sm:flex sm:flex-col sm:items-end">
+                                <p class="text-sm leading-6 text-gray-900">{{$makeApi->modelName ?? ""}}</p>
+                            </div>
+                        </li>
+                        <li class="flex justify-between gap-x-6 py-5">
+                            <div class="flex gap-x-4">
+                                <div class="min-w-0 flex-auto">
+                                    <p class="text-sm font-semibold leading-6 text-gray-900">Name</p>
+                                </div>
+                            </div>
+                            <div class="hidden sm:flex sm:flex-col sm:items-end">
+                                <p class="text-sm leading-6 text-gray-900">Type</p>
+                            </div>
+                        </li>
+                        @if (isset($makeApi->columns))
+                            @foreach($makeApi->columns as $col)
+                                <li class="flex justify-between gap-x-6 py-5">
+                                    <div class="flex gap-x-4">
+                                        <div class="min-w-0 flex-auto">
+                                            <p class="text-sm font-semibold leading-6 text-gray-900">{{mb_strtolower($col->name ?? "")}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="hidden sm:flex sm:flex-col sm:items-end">
+                                        <p class="text-sm leading-6 text-gray-900">{{$col->type ?? ""}}</p>
+                                    </div>
+                                </li>
+                            @endforeach
+                        @endif
+
+                    </ul>
+
+                    <hr>
+
                     <div class="text-center">
                         <p>Enpoints  generated</p>
                     </div>
@@ -134,6 +138,8 @@
                         </li>
 
                     </ul>
+
+
 
                 </div>
             </div>
