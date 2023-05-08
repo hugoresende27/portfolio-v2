@@ -32,7 +32,8 @@
                 </div>
                 <div class="col-span-9 bg-white rounded-2xl p-5">
 
-                    <form>
+                    <form id="createForm">
+                        @csrf
                         <div class="space-y-12">
                             <div class="border-b border-gray-900/10 pb-12">
                                 <h2 class="text-base font-semibold leading-7 text-gray-900">Enter Data</h2>
@@ -46,17 +47,27 @@
                                                 <div class="mt-2">
                                                     <p class="text-sm leading-6 text-gray-900">{{$col->type ?? ""}}</p>
 
-                                                    <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                                                        <input type=@if($col->type == 'text')"text" @elseif($col->type == 'boolean')"checkbox" @elseif($col->type == 'data')"date" @else "number" @endif id="{{$col->name}}" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
-                                                    </div>
+                                                        @if($col->type == 'text')
+                                                            <input required type="text" id="{{$col->name}}" name="{{$col->name}}"  class="block flex-1 border-1 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
 
+                                                        @elseif($col->type == 'boolean')
+                                                            <input required type="checkbox" id="{{$col->name}}" name="{{$col->name}}" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                                                        @elseif($col->type == 'data')
+                                                            <input required type="date" id="{{$col->name}}" name="{{$col->name}}" class="block flex-1 border-1 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
+
+                                                        @else
+                                                            <input required type="number" id="{{$col->name}}" name="{{$col->name}}" class="block flex-1 border-1 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
+
+                                                        @endif
 
                                                 </div>
                                             </div>
                                         </div>
                                     @endforeach
                                 @endif
-
+                                <div class="mt-10">
+                                    <button type="submit" class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Create</button>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -79,5 +90,53 @@
 
 </x-guest-layout>
 
-<script src="{{asset('js/apimaker.js')}}"></script>
+<script>
+
+
+    const formCreate = new FormData(document.querySelector('form'));
+
+
+    formCreate.addEventListener('submit', async (event) => {
+        console.log('aqui')
+        event.preventDefault(); // Prevents the default form submission
+
+        const formData = new FormData(formCreate);
+        const url = formCreate.action;
+
+
+        console.log(formData.entries())
+
+
+        // try {
+        //     await Swal.showLoading();
+        //     const response = await axios.post(url, formData);
+        //     const { success } = response.data;
+        //
+        //     if (success) {
+        //         await Swal.fire({
+        //             title: 'Entry created successfully',
+        //             color: 'white',
+        //             background: '#374151',
+        //             confirmButtonColor: '#111827',
+        //             confirmButtonText: 'OK',
+        //         });
+        //
+        //     } else {
+        //         await Swal.fire({
+        //             title: 'Entry NOT created',
+        //             color: 'white',
+        //             background: '#f55426',
+        //             confirmButtonColor: '#030303',
+        //             confirmButtonText: 'OK',
+        //         });
+        //     }
+        // } catch (error) {
+        //     console.error(error);
+        // }
+    });
+
+
+
+</script>
+
 

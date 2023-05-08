@@ -96,3 +96,6 @@ minusButton.addEventListener("click", function() {
 function reloadForm() {
     location.reload();
 }
+
+
+//////////////////////////////////////////////////////////////////////
