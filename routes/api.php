@@ -29,9 +29,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/api-maker', [ApiMakerController::class, 'makeApi'])->name('apimaker.make-model')->name('projects.apimaker.post');
 
 /**API_MAKER**/
-Route::apiResource('/api-maker/book20230507192741', \App\Http\Controllers\Book20230507192741Controller::class );
-
-
 
 
 

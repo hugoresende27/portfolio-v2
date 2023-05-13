@@ -59,6 +59,12 @@ class MainController extends Controller
 
 
 
+    public function template(): View
+    {
+        $quote = $this->inspire();
+        return view ('template.index', compact('quote'));
+    }
+
 
 
 }

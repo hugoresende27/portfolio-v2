@@ -31,7 +31,7 @@
             )
             <x-footer class="mt-auto"></x-footer>
         @else
-            <div class="flex flex-col items-center justify-center">
+            <div class="flex flex-col items-center justify-center bottom-0">
                 <div class="text-center">
                     <p class="text-white p-3">{{$lastUpdate}}</p>
                 </div>

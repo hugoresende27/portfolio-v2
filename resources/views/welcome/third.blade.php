@@ -4,12 +4,12 @@
             <div class="flex  px-4 py-5 sm:p-6 rounded-lg bg-gray-700 shadow mt-0">
 
                 <div class="ml-4 flex-shrink-0 self-center">
-                        <a href="{{route('projects')}}">
-                            <button>
-                                <img class="" src="{{asset('my_images/me.jpg')}}" alt="me">
-                            </button>
-                        </a>
-                    </div>
+                    <a href="{{route('projects')}}">
+                        <button>
+                            <img class="" src="{{asset('my_images/me.jpg')}}" alt="me">
+                        </button>
+                    </a>
+                </div>
                 <div class="box box1">
                     <div class="">
                         <h4 class="text-sm sm:text-2xl  font-bold">About me</h4>
