@@ -20,7 +20,7 @@
                     <p class="ml-2 flex items-baseline text-2xl font-semibold ">
                         <span id="weather-current" class="text-sm text-green-600"></span><span class="text-green-600 text-sm">&deg;C.</span>  &nbsp;&nbsp;&nbsp;
                         <span id="weather-condition" class="text-sm text-black"></span>&nbsp;&nbsp;
-                        <span id="weather-wind" class="text-sm text-black"></span>&nbsp<span class="text-sm">Km/h</span>&nbsp;
+                        <span id="weather-wind" class="text-sm text-black"></span>&nbsp<span class="text-sm text-black">Km/h</span>&nbsp;
                         <span id="weather-wind-dir" class="text-sm text-black"></span>
 
                     </p>
