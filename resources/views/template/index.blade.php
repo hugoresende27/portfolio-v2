@@ -49,7 +49,7 @@
                 </x-welcome-first>
 
 
-
+                <hr class="mt-5 mb-5">
                 <div class="">
 
 {{--                     THIRD BOX--}}
@@ -62,7 +62,7 @@
 
 
 {{--                    WEATHER BOX--}}
-{{--                <x-api_components.weather />--}}
+                <x-api_components.weather />
 
 {{--                    SECOND BOX--}}
 
