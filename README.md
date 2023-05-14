@@ -12,4 +12,9 @@
 1. get db host : sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' portfolio-db
 2. initiante elasticsearch server with docker and 4gb memory : sudo docker run --name es01 --net elastic -p 9200:9200 -it --memory=4g docker.elastic.co/elasticsearch/elasticsearch:8.7.0
 
+--------
+- Useful Git commands:
+1. git reset --hard HEAD (reset for no changes to commit)
+
+
 
