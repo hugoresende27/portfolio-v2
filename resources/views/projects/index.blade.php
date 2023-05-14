@@ -24,20 +24,26 @@
 
 
 
-        <div class="overflow-hidden ">
-            <x-welcome-first :quote="$quote">
+            <div class=" text-center py-16 sm:py-4">
 
-            </x-welcome-first>
-            <div class="h-500 text-center py-16 sm:py-4 ">
-                <div class=" text-center py-16 sm:py-4">
+                <x-welcome-topbar>
 
-
-
-                    <div>
+                </x-welcome-topbar>
 
 
 
-                        <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                <x-welcome-first :quote="$quote">
+
+                </x-welcome-first>
+
+                <div class="h-500 text-center py-16 sm:py-4 ">
+                    {{--                            RANDOM--}}
+                    <x-api_components.weather />
+
+
+                        <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-5">
+
+
 
 
                             {{--                        API MAKER     --}}

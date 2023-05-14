@@ -22,7 +22,10 @@
 
 
 
-            <div class="mt-10 overflow-x-hidden">
+            <div class="mt-10 overflow-x-hidden text-center">
+                <x-welcome-topbar>
+
+                </x-welcome-topbar>
                 <div class="bg-white rounded-2xl overflow-y-hidden">
                     <div class="bg-white py-6 sm:py-12">
                         <div class="mx-auto max-w-7xl px-6 lg:px-8">

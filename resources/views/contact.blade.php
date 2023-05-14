@@ -22,28 +22,17 @@
 
 
 
-        <div class="overflow-hidden ">
+
+            <div class=" text-center py-16 sm:py-4">
 
 
+                <x-welcome-topbar>
 
-            <div class="py-16 sm:py-4">
+                </x-welcome-topbar>
 
 
                 {{--                    CONTACT ME FORM --}}
                 <x-portfolio.contact-me />
-
-
-
-
-
-
-
-
-            </div>
-
-
-
-
 
 
 

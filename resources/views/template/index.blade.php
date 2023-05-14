@@ -38,31 +38,37 @@
             <div class=" text-center py-16 sm:py-4">
 
 
-                {{--                    FIRST BOX--}}
+                <x-welcome-topbar>
 
-                                    <x-welcome-first :quote="$quote">
+                </x-welcome-topbar>
 
-                                    </x-welcome-first>
+{{--                    FIRST BOX--}}
 
-                                    <div class="">
+                <x-welcome-first :quote="$quote">
 
-                {{--                     THIRD BOX--}}
-
-                                        <x-welcome-third>
-
-                                        </x-welcome-third>
-
-                                    </div>
+                </x-welcome-first>
 
 
-                {{--                    WEATHER BOX--}}
-                                    <x-api_components.weather />
 
-                {{--                    SECOND BOX--}}
+                <div class="">
 
-                                   <x-welcome-second>
+{{--                     THIRD BOX--}}
 
-                                   </x-welcome-second>
+                    <x-welcome-third>
+
+                    </x-welcome-third>
+
+                </div>
+
+
+{{--                    WEATHER BOX--}}
+{{--                <x-api_components.weather />--}}
+
+{{--                    SECOND BOX--}}
+
+               <x-welcome-second>
+
+               </x-welcome-second>
 
 
 

@@ -24,10 +24,12 @@
 
 
 
-        <div class="overflow-hidden ">
-            <x-welcome-first :quote="$quote">
+        <div class="overflow-hidden text-center">
+            <div class="m-5">
+                <x-welcome-topbar>
 
-            </x-welcome-first>
+                </x-welcome-topbar>
+            </div>
             <div class="h-500 text-center py-16 sm:py-4 ">
                 <div class="px-4 sm:px-6 lg:px-8">
                     <div class="sm:flex sm:items-center">

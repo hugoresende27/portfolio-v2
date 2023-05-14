@@ -93,23 +93,5 @@
 <script src="{{asset('js/weather.js')}}"></script>
 
 
-<style>
-    /******************************************************************************************/
-    .box2 {
-        --mask:
-            radial-gradient(8px at 0 75%,#0000 98%,#000) 8px 50%/100% 32px repeat-y,
-            radial-gradient(8px at 50% 25%,#000 99%,#0000 101%) left/16px 32px repeat-y;
-        -webkit-mask: var(--mask);
-        mask: var(--mask);
-    }
 
-    .box3 {
-        --mask:
-            radial-gradient(8px at 100% 25%,#0000 98%,#000) calc(100% - 8px) 50%/100% 32px repeat-y,
-            radial-gradient(8px at 50% 75%,#000 99%,#0000 101%) right/16px 32px repeat-y;
-        -webkit-mask: var(--mask);
-        mask: var(--mask);
-    }
-
-</style>
 

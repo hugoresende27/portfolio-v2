@@ -30,33 +30,18 @@
 
 
 
-
             <div class="overflow-hidden ">
 
 
 
                 <div class=" text-center py-16 sm:py-4">
 
-                    <a href="{{route('template')}}">
-                        <button type="button" class="rounded-full px-4 py-2.5 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 hover:text-gray-900">Home</button>
-                    </a>
-                    <a href="{{route('projects')}}">
-                        <button type="button" class="rounded-full  px-4 py-2.5 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 hover:text-gray-900">Projects</button>
-                    </a>
-                    <a href="{{asset('cv/cv.pdf')}}" target="_blank">
-                        <button type="button" class="rounded-full px-4 py-2.5 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 hover:text-gray-900">CV</button>
-                    </a>
-                    <a href="{{route('contact-me')}}">
-                        <button type="button" class="rounded-full px-4 py-2.5 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 hover:text-gray-900">Contact me</button>
-                    </a>
-{{--                    <a href="https://github.com/hugoresende27/" target="_blank">--}}
-{{--                        <button type="button" class="rounded-full px-4 py-2.5 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 hover:text-gray-900">Github</button>--}}
-{{--                    </a>--}}
-{{--                    <a href="https://www.linkedin.com/in/hugo-resende-781ab1111/" target="_blank">--}}
-{{--                        <button type="button" class="rounded-full px-4 py-2.5 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 hover:text-gray-900">Linkedin</button>--}}
-{{--                    </a>--}}
 
-                    <hr class="m-5">
+                    <x-welcome-topbar>
+
+                    </x-welcome-topbar>
+
+
 
                     <div class="ml-4 flex-shrink-0 self-center">
                         <a href="{{route('projects')}}">

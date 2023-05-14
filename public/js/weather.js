@@ -168,6 +168,7 @@ function getNews() {
                 const newsItemI = document.createElement('a');
                 const newsTitleItemI = document.createElement('p');
                 newsItemI.href = newsLinkI;
+                newsItemI.target = "_blank";
                 newsTitleItemI.innerText = decodedTitle.innerText;
                 newsItemI.appendChild(newsTitleItemI);
                 news.appendChild(newsItemI);

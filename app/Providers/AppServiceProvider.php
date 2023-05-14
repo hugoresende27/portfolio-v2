@@ -23,5 +23,6 @@ class AppServiceProvider extends ServiceProvider
         Blade::component('welcome.first', 'welcome-first');
         Blade::component('welcome.second', 'welcome-second');
         Blade::component('welcome.third', 'welcome-third');
+        Blade::component('welcome.topbar', 'welcome-topbar');
     }
 }
