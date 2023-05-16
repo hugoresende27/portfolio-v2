@@ -62,7 +62,7 @@
 
 
 {{--                    WEATHER BOX--}}
-                <x-api_components.weather />
+{{--                <x-api_components.weather />--}}
 
 {{--                    SECOND BOX--}}
 
