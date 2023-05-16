@@ -147,6 +147,7 @@ const getNewsRoute = 'api/get-news';
 function getNews() {
 
     try {
+        news.innerHTML = '';
         axios.get(getNewsRoute)
             .then(response => {
                 const results = response.data.results;
